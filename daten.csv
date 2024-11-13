@@ -3,70 +3,69 @@ SMD Löten,3,Hardware Reparatur,SMD Löten.png
 Feines Handwerk,4,Hardware Reparatur,Feines Handwerk.png
 Exakt,5,Hardware Reparatur,Exakt.png
 Kabelbau,4,Hardware Reparatur,Kabelbau.png
-Lesen von Schema und Service Manuals,5,Hardware Reparatur,
-Zeichnen von Schema und Service Manuals,3,Hardware Reparatur
-Level 1 Reparaturen,5,Hardware Reparatur
-Level 2 Reparaturen ,5,Hardware Reparatur
-Level 3 Reparaturen,4,Hardware Reparatur
-Manjaro v Arch Linux,4,Software Systeme
-Debian v Ubuntu v Kali v Fedora,3,Software Systeme
-Apple IOS,4,Software Systeme
-Mac OS und Mac OS ARM,4,Software Systeme
-Apple iPad OS,4,Software Systeme
-Android,4,Software Systeme
-Manjaro ARM,4,Software Systeme
-Windows ,3,Software Systeme
-C++,1,Programierschsprachen
-Python,2,Programierschsprachen
-Lua,2,Programierschsprachen
-VBA,2,Programierschsprachen
-SQL,1,Programierschsprachen
-Javascript,1,Programierschsprachen
-BASH,1,Programierschsprachen
-PHP,1,Programierschsprachen
-Microsoft Office,4,Software Kentnisse
-Google Dienste,4,Software Kentnisse
-Jiira / Confluence,3,Software Kentnisse
-Citrix,2,Software Kentnisse
-Umgang mit KI,4,Software Kentnisse
-GitHub,3,Software Kentnisse
-Asana,3,Software Kentnisse
-Notion,3,Software Kentnisse
-NeoVim,3,Software Kentnisse
-Terminal,4,Software Kentnisse
-SAP,3,Software Kentnisse
-MS Teams,1,Software Kentnisse
-Laptop ,5,Hardware Kentnisse
-Tablet,4,Hardware Kentnisse
-Smartphone,5,Hardware Kentnisse
-PC Dekstop,5,Hardware Kentnisse
-Display v TV,5,Hardware Kentnisse
-Hi-Fi Audio,4,Hardware Kentnisse
-Video,4,Hardware Kentnisse
-Eventtechnik,2,Hardware Kentnisse
-Projektor ,2,Hardware Kentnisse
-iMac,5,Hardware Kentnisse
-iPod ,5,Hardware Kentnisse
-Kopfhörer,4,Hardware Kentnisse
-Lautsprecher,5,Hardware Kentnisse
-Car-Hi-Fi,3,Hardware Kentnisse
-Smartwatch,3,Hardware Kentnisse
-DVB Receiver,4,Hardware Kentnisse
-Elektrotrechnik Bauteile,3,Hardware Kentnisse
-Drucker ,4,Hardware Kentnisse
-Ersatzteilverwaltung,5,Arbeitsabläufe
-Kostenvoranschläge erstellen,5,Arbeitsabläufe
-Kundensupport,5,Arbeitsabläufe
-Zusammenarbeit mit Kunden,5,Arbeitsabläufe
-Garantieabgeltungen,5,Arbeitsabläufe
-Fehlersuche,4,Arbeitsabläufe
-Fehlerbehebung,4,Arbeitsabläufe
-Refurbishment,5,Arbeitsabläufe
-Automatisierung von Arbeit,3,Arbeitsabläufe
-Sicherheitsbewusstsein,5,Arbeitsabläufe
-Grundkentnisse,1,Erklärung
-Gutes theoretisches Wissen,2,Erklärung
-Erfahrung in Praktik und Theorie,3,Erklärung
-Gute praktische und theoretische Kentnisse,4,Erklärung
-Sehr gute praktische und theoretische Kentnisse,5,Erklärung
-
+Lesen von Schema und Service Manuals,5,Hardware Reparatur,Lesen von Schema und Service Manuals.png
+Zeichnen von Schema und Service Manuals,3,Hardware Reparatur,Zeichnen von Schema und Service Manuals.png
+Level 1 Reparaturen,5,Hardware Reparatur,Level 1 Reparaturen.png
+Level 2 Reparaturen ,5,Hardware Reparatur,Level 2 Reparaturen.png
+Level 3 Reparaturen,4,Hardware Reparatur,Level 3 Reparaturen.png
+Manjaro v Arch Linux,4,Software Systeme,Manjaro v Arch Linux.png
+Debian v Ubuntu v Kali v Fedora,3,Software Systeme,Debian v Ubuntu v Kali v Fedora.png
+Apple IOS,4,Software Systeme,Apple IOS.png
+Mac OS und Mac OS ARM,4,Software Systeme,Mac OS und Mac OS ARM.png
+Apple iPad OS,4,Software Systeme,Apple iPad OS.png
+Android,4,Software Systeme,Android.png
+Manjaro ARM,4,Software Systeme,Manjaro ARM.png
+Windows ,3,Software Systeme,Windows.png
+C++,1,Programierschsprachen,C++.png
+Python,2,Programierschsprachen,Python.png
+Lua,2,Programierschsprachen,Lua.png
+VBA,2,Programierschsprachen,VBA.png
+SQL,1,Programierschsprachen,SQL.png
+Javascript,1,Programierschsprachen,Javascript.png
+BASH,1,Programierschsprachen,BASH.png
+PHP,1,Programierschsprachen,PHP.png
+Microsoft Office,4,Software Kentnisse,Microsoft Office.png
+Google Dienste,4,Software Kentnisse,Google Dienste.png
+Jiira / Confluence,3,Software Kentnisse,Jiira / Confluence.png
+Citrix,2,Software Kentnisse,Citrix.png
+Umgang mit KI,4,Software Kentnisse,Umgang mit KI.png
+GitHub,3,Software Kentnisse,GitHub.png
+Asana,3,Software Kentnisse,Asana.png
+Notion,3,Software Kentnisse,Notion.png
+NeoVim,3,Software Kentnisse,NeoVim.png
+Terminal,4,Software Kentnisse,Terminal.png
+SAP,3,Software Kentnisse,SAP.png
+MS Teams,1,Software Kentnisse,MS Teams.png
+Laptop ,5,Hardware Kentnisse,Laptop.png
+Tablet,4,Hardware Kentnisse,Tablet.png
+Smartphone,5,Hardware Kentnisse,Smartphone.png
+PC Dekstop,5,Hardware Kentnisse,PC Dekstop.png
+Display v TV,5,Hardware Kentnisse,Display v TV.png
+Hi-Fi Audio,4,Hardware Kentnisse,Hi-Fi Audio.png
+Video,4,Hardware Kentnisse,Video.png
+Eventtechnik,2,Hardware Kentnisse,Eventtechnik.png
+Projektor ,2,Hardware Kentnisse,Projektor.png
+iMac,5,Hardware Kentnisse,iMac.png
+iPod ,5,Hardware Kentnisse,iPod.png
+Kopfhörer,4,Hardware Kentnisse,Kopfhörer.png
+Lautsprecher,5,Hardware Kentnisse,Lautsprecher.png
+Car-Hi-Fi,3,Hardware Kentnisse,Car-Hi-Fi.png
+Smartwatch,3,Hardware Kentnisse,Smartwatch.png
+DVB Receiver,4,Hardware Kentnisse,DVB Receiver.png
+Elektrotrechnik Bauteile,3,Hardware Kentnisse,Elektrotrechnik Bauteile.png
+Drucker ,4,Hardware Kentnisse,Drucker.png
+Ersatzteilverwaltung,5,Arbeitsabläufe,Ersatzteilverwaltung.png
+Kostenvoranschläge erstellen,5,Arbeitsabläufe,Kostenvoranschläge erstellen.png
+Kundensupport,5,Arbeitsabläufe,Kundensupport.png
+Zusammenarbeit mit Kunden,5,Arbeitsabläufe,Zusammenarbeit mit Kunden.png
+Garantieabgeltungen,5,Arbeitsabläufe,Garantieabgeltungen.png
+Fehlersuche,4,Arbeitsabläufe,Fehlersuche.png
+Fehlerbehebung,4,Arbeitsabläufe,Fehlerbehebung.png
+Refurbishment,5,Arbeitsabläufe,Refurbishment.png
+Automatisierung von Arbeit,3,Arbeitsabläufe,Automatisierung von Arbeit.png
+Sicherheitsbewusstsein,5,Arbeitsabläufe,Sicherheitsbewusstsein.png
+Grundkentnisse,1,Erklärung,Grundkentnisse.png
+Gutes theoretisches Wissen,2,Erklärung,Gutes theoretisches Wissen.png
+Erfahrung in Praktik und Theorie,3,Erklärung,Erfahrung in Praktik und Theorie.png
+Gute praktische und theoretische Kentnisse,4,Erklärung,Gute praktische und theoretische Kentnisse.png
+Sehr gute praktische und theoretische Kentnisse,5,Erklärung,Sehr gute praktische und theoretische Kentnisse.png
