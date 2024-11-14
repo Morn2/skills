@@ -11,7 +11,7 @@ def read_data_from_csv(file_path):
             category = row['Kategorie']
             if category not in data:
                 data[category] = []
-            data[category].append((row['Name'], row['Icon'], int(row['Wert'])))
+            data[category].append((row['Name'], row['Icon']))
     return data
 
 def create_document(filename, data):
@@ -19,23 +19,23 @@ def create_document(filename, data):
     width, height = A4
 
     # Überschrift hinzufügen und unterstreichen
-    c.setFont("Helvetica-Bold", 16)
-    c.drawString(100, height - 50, "Aaron Feldmann Skill Auflistung")
-    c.line(100, height - 55, width - 100, height - 55)  # Unterstrich hinzufügen
+    c.setFont("Helvetica-Bold", 8)  # Schriftgröße halbiert
+    c.drawString(100, height - 25, "Aaron Feldmann Skill Auflistung")
+    c.line(100, height - 27.5, width - 100, height - 27.5)  # Unterstrich hinzufügen
 
-    y_position = height - 100
+    y_position = height - 50
 
     for category, items in data.items():
-        c.setFont("Helvetica-Bold", 12)
+        c.setFont("Helvetica-Bold", 6)  # Schriftgröße halbiert
         c.drawString(100, y_position, category)
-        y_position -= 20
+        y_position -= 10
 
-        for name, icon_path, value in items:
-            c.setFont("Helvetica", 12)
-            c.drawString(100, y_position, f"{name} ({value})")
-            y_position -= 20
+        for name, icon_path in items:
+            c.setFont("Helvetica", 6)  # Schriftgröße halbiert
+            c.drawString(100, y_position, name)
+            y_position -= 10
 
-        y_position -= 20  # Leerschlag zwischen Kategorien
+        y_position -= 10  # Leerschlag zwischen Kategorien
 
     c.save()
 
