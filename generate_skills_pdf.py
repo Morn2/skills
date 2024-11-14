@@ -7,9 +7,10 @@ def create_document(filename):
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
 
-    # Überschrift hinzufügen
+    # Überschrift hinzufügen und unterstreichen
     c.setFont("Helvetica-Bold", 16)
     c.drawString(100, height - 50, "Aaron Feldmann Skill Auflistung")
+    c.line(100, height - 55, width - 100, height - 55)  # Unterstrich hinzufügen
 
     # Beispiel-Daten
     data = {
@@ -28,13 +29,18 @@ def create_document(filename):
             try:
                 c.setFont("Helvetica", 12)
                 c.drawString(100, y_position, f"{name} ({value})")
+                
+                # Hintergrund weiß setzen
                 icon = utils.ImageReader(icon_path)
                 icon_width, icon_height = icon.getSize()
                 aspect = icon_height / float(icon_width)
                 icon_width = 1.5 * cm
                 icon_height = icon_width * aspect
 
-                c.drawImage(icon_path, 100 + 150, y_position - icon_height + 5, width=icon_width, height=icon_height)
+                c.setFillColorRGB(1, 1, 1)
+                c.rect(250, y_position - icon_height, icon_width, icon_height, fill=1)
+                c.drawImage(icon_path, 250, y_position - icon_height, width=icon_width, height=icon_height)
+                
                 y_position -= (icon_height + 10)
             except IOError:
                 c.setFont("Helvetica", 12)
