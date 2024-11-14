@@ -19,32 +19,39 @@ def create_document(filename, data):
     width, height = A4
 
     # Überschrift hinzufügen und unterstreichen
-    c.setFont("Helvetica-Bold", 13)  # Schriftgröße halbiert
-    c.drawString(100, height - 25, "Aaron Feldmann Skill Auflistung")
-    c.line(100, height - 27.5, width - 100, height - 27.5)  # Unterstrich hinzufügen
+    c.setFont("Helvetica-Bold", 13)
+    c.drawString(50, height - 25, "Aaron Feldmann Skill Auflistung")
+    c.line(50, height - 27.5, width - 50, height - 27.5)  # Unterstrich hinzufügen
 
     y_position = height - 50
-    column_x_positions = [100, width / 2 + 50]
+    column_x_positions = [50, width / 2]
     column_index = 0
 
+    left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur", "Erklärung"]
+
     for category, items in data.items():
-        c.setFont("Helvetica-Bold", 11)  # Schriftgröße halbiert
+        if category in left_categories:
+            column_index = 0
+        else:
+            column_index = 1
+
+        c.setFont("Helvetica-Bold", 11)
         c.drawString(column_x_positions[column_index], y_position, category)
-        y_position -= 10
+        y_position -= 20
 
         for name, icon_path in items:
-            if y_position < 40:  # Wenn das Ende der Seite erreicht ist
-                column_index += 1  # Zur nächsten Spalte wechseln
-                y_position = height - 50  # Zurück zum oberen Rand der Seite
-                if column_index >= len(column_x_positions):  # Wenn alle Spalten gefüllt sind
-                    c.showPage()  # Neue Seite beginnen
-                    column_index = 0  # Zurück zur ersten Spalte
+            if y_position < 40:
+                column_index += 1
+                y_position = height - 50
+                if column_index >= len(column_x_positions):
+                    c.showPage()
+                    column_index = 0
 
-            c.setFont("Helvetica", 11)  # Schriftgröße halbiert
+            c.setFont("Helvetica", 11)
             c.drawString(column_x_positions[column_index], y_position, name)
             y_position -= 10
 
-        y_position -= 10  # Leerschlag zwischen Kategorien
+        y_position -= 20  # Leerschlag zwischen Kategorien
 
     c.save()
 
