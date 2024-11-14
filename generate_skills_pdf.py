@@ -1,9 +1,21 @@
+import csv
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import cm
 from reportlab.lib import utils
 
-def create_document(filename):
+def read_data_from_csv(file_path):
+    data = {}
+    with open(file_path, newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            category = row['Kategorie']
+            if category not in data:
+                data[category] = []
+            data[category].append((row['Name'], row['Icon'], int(row['Wert'])))
+    return data
+
+def create_document(filename, data):
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
 
@@ -11,12 +23,6 @@ def create_document(filename):
     c.setFont("Helvetica-Bold", 16)
     c.drawString(100, height - 50, "Aaron Feldmann Skill Auflistung")
     c.line(100, height - 55, width - 100, height - 55)  # Unterstrich hinzufügen
-
-    # Beispiel-Daten
-    data = {
-        "Hardware": [("Löten", "Icons/Löten.png", 2), ("SMD Löten", "Icons/SMD Löten.png", 3)],
-        "Software": [("Apple IOS", "Icons/Apple IOS.png", 1), ("Android", "Icons/Android.png", 1)]
-    }
 
     y_position = height - 100
 
@@ -31,7 +37,7 @@ def create_document(filename):
                 c.drawString(100, y_position, f"{name} ({value})")
                 
                 # Hintergrund weiß setzen
-                icon = utils.ImageReader(icon_path)
+                icon = utils.ImageReader(f"Icons/{icon_path}")
                 icon_width, icon_height = icon.getSize()
                 aspect = icon_height / float(icon_width)
                 icon_width = 1.5 * cm
@@ -39,7 +45,7 @@ def create_document(filename):
 
                 c.setFillColorRGB(1, 1, 1)
                 c.rect(250, y_position - icon_height, icon_width, icon_height, fill=1)
-                c.drawImage(icon_path, 250, y_position - icon_height, width=icon_width, height=icon_height)
+                c.drawImage(f"Icons/{icon_path}", 250, y_position - icon_height, width=icon_width, height=icon_height)
                 
                 y_position -= (icon_height + 10)
             except IOError:
@@ -51,4 +57,8 @@ def create_document(filename):
 
     c.save()
 
-create_document("skills.pdf")
+# Daten aus CSV-Datei lesen
+data = read_data_from_csv('daten.csv')
+
+# PDF-Dokument erstellen
+create_document("skills.pdf", data)
