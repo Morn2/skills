@@ -7,6 +7,10 @@ def create_document(filename):
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
 
+    # Überschrift hinzufügen
+    c.setFont("Helvetica-Bold", 16)
+    c.drawString(100, height - 50, "Aaron Feldmann Skill Auflistung")
+
     # Beispiel-Daten
     data = {
         "Hardware": [("Löten", "Icons/Löten.png", 2), ("SMD Löten", "Icons/SMD Löten.png", 3)],
@@ -22,15 +26,15 @@ def create_document(filename):
 
         for name, icon_path, value in items:
             try:
+                c.setFont("Helvetica", 12)
+                c.drawString(100, y_position, f"{name} ({value})")
                 icon = utils.ImageReader(icon_path)
                 icon_width, icon_height = icon.getSize()
                 aspect = icon_height / float(icon_width)
                 icon_width = 1.5 * cm
                 icon_height = icon_width * aspect
 
-                c.drawImage(icon_path, 100, y_position - icon_height + 5, width=icon_width, height=icon_height)
-                c.setFont("Helvetica", 12)
-                c.drawString(100 + icon_width + 10, y_position, f"{name} ({value})")
+                c.drawImage(icon_path, 100 + 150, y_position - icon_height + 5, width=icon_width, height=icon_height)
                 y_position -= (icon_height + 10)
             except IOError:
                 c.setFont("Helvetica", 12)
