@@ -35,7 +35,7 @@ def create_document(filename, data):
         if category in data:
             c.setFont("Helvetica-Bold", 11)
             c.drawString(column_x_positions[0], y_position, category)
-            y_position -= 10
+            y_position -= 12  # Anpassung des Zeilenabstands
 
             for name, icon_path in data[category]:
                 if y_position < 40:
@@ -43,7 +43,7 @@ def create_document(filename, data):
 
                 c.setFont("Helvetica", 11)
                 c.drawString(column_x_positions[0], y_position, name)
-                y_position -= 10
+                y_position -= 12  # Anpassung des Zeilenabstands
 
             y_position -= 20  # Leerschlag zwischen Kategorien
 
@@ -53,7 +53,7 @@ def create_document(filename, data):
         if category in data:
             c.setFont("Helvetica-Bold", 11)
             c.drawString(column_x_positions[1], y_position, category)
-            y_position -= 10
+            y_position -= 12  # Anpassung des Zeilenabstands
 
             for name, icon_path in data[category]:
                 if y_position < 40:
@@ -61,21 +61,21 @@ def create_document(filename, data):
 
                 c.setFont("Helvetica", 11)
                 c.drawString(column_x_positions[1], y_position, name)
-                y_position -= 10
+                y_position -= 12  # Anpassung des Zeilenabstands
 
             y_position -= 20  # Leerschlag zwischen Kategorien
 
     # Erklärung als separaten Block am Ende der ersten Seite hinzufügen
     if "Erklärung" in data:
-        y_position = 80  # Platz für Erklärung am Ende der Seite reservieren
+        y_position = 130  # Platz für Erklärung am Ende der Seite reservieren
         c.setFont("Helvetica-Bold", 15)
         c.drawString(50, y_position, "Erklärung")
-        y_position -= 10
+        y_position -= 20  # Anpassung des Zeilenabstands
 
         for name, icon_path in data["Erklärung"]:
             c.setFont("Helvetica", 15)
             c.drawString(50, y_position, name)
-            y_position -= 10
+            y_position -= 20  # Anpassung des Zeilenabstands
 
     c.save()
 
