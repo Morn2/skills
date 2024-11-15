@@ -27,7 +27,7 @@ def create_document(filename, data):
     column_x_positions = [50, width / 2]
     column_index = 0
 
-    left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur", "Erklärung"]
+    left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur"]
     right_categories = ["Software Systeme", "Programierschsprachen", "Software Kentnisse", "Hardware Kentnisse"]
 
     # Zuerst die linken Kategorien
@@ -66,6 +66,19 @@ def create_document(filename, data):
                 y_position -= 10
 
             y_position -= 20  # Leerschlag zwischen Kategorien
+
+    # Erklärung als separaten Block am Ende hinzufügen
+    if "Erklärung" in data:
+        c.showPage()  # Neue Seite für den Erklärung Block
+        y_position = 50  # Unten auf der Seite beginnen
+        c.setFont("Helvetica-Bold", 11)
+        c.drawString(50, y_position, "Erklärung")
+        y_position -= 10
+
+        for name, icon_path in data["Erklärung"]:
+            c.setFont("Helvetica", 11)
+            c.drawString(50, y_position, name)
+            y_position -= 10
 
     c.save()
 
