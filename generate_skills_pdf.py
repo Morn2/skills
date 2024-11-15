@@ -59,3 +59,5 @@ data = read_data_from_csv('daten.csv')
 # PDF-Dokument erstellen
 create_document("skills.pdf", data)
 
+
+
