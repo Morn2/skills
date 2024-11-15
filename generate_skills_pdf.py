@@ -36,7 +36,7 @@ def create_document(filename, data):
         if image_path and os.path.exists(image_path):
             try:
                 image = ImageReader(image_path)
-                c.drawImage(image, x + text_width + 5, y - font_size + 3, width=font_size, height=font_size)
+                c.drawImage(image, x + text_width + 5, y - font_size * 0.75, width=font_size, height=font_size)
             except Exception as e:
                 print(f"Error loading image {image_path}: {e}")
 
