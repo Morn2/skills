@@ -37,7 +37,7 @@ def create_document(filename, data):
 
         c.setFont("Helvetica-Bold", 11)
         c.drawString(column_x_positions[column_index], y_position, category)
-        y_position -= 20
+        y_position -= 10  # Reduziere den Leerraum hier
 
         for name, icon_path in items:
             if y_position < 40:
@@ -50,8 +50,6 @@ def create_document(filename, data):
             c.setFont("Helvetica", 11)
             c.drawString(column_x_positions[column_index], y_position, name)
             y_position -= 10
-
-        y_position -= 20  # Leerschlag zwischen Kategorien
 
     c.save()
 
