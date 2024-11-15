@@ -19,7 +19,7 @@ def create_document(filename, data):
     width, height = A4
 
     # Überschrift hinzufügen und unterstreichen
-    c.setFont("Helvetica-Bold", 13)
+    c.setFont("Helvetica-Bold", 16)  # Erhöht um 3
     c.drawString(50, height - 25, "Aaron Feldmann Skill Auflistung")
     c.line(50, height - 27.5, width - 50, height - 27.5)  # Unterstrich hinzufügen
 
@@ -33,17 +33,17 @@ def create_document(filename, data):
     # Zuerst die linken Kategorien
     for category in left_categories:
         if category in data:
-            c.setFont("Helvetica-Bold", 11)
+            c.setFont("Helvetica-Bold", 14)  # Erhöht um 3
             c.drawString(column_x_positions[0], y_position, category)
-            y_position -= 12  # Anpassung des Zeilenabstands
+            y_position -= 14  # Anpassung des Zeilenabstands
 
             for name, icon_path in data[category]:
                 if y_position < 40:
                     break
 
-                c.setFont("Helvetica", 11)
+                c.setFont("Helvetica", 14)  # Erhöht um 3
                 c.drawString(column_x_positions[0], y_position, name)
-                y_position -= 12  # Anpassung des Zeilenabstands
+                y_position -= 14  # Anpassung des Zeilenabstands
 
             y_position -= 20  # Leerschlag zwischen Kategorien
 
@@ -51,17 +51,17 @@ def create_document(filename, data):
     y_position = height - 50  # Reset y_position for the right column
     for category in right_categories:
         if category in data:
-            c.setFont("Helvetica-Bold", 11)
+            c.setFont("Helvetica-Bold", 14)  # Erhöht um 3
             c.drawString(column_x_positions[1], y_position, category)
-            y_position -= 12  # Anpassung des Zeilenabstands
+            y_position -= 14  # Anpassung des Zeilenabstands
 
             for name, icon_path in data[category]:
                 if y_position < 40:
                     break
 
-                c.setFont("Helvetica", 11)
+                c.setFont("Helvetica", 14)  # Erhöht um 3
                 c.drawString(column_x_positions[1], y_position, name)
-                y_position -= 12  # Anpassung des Zeilenabstands
+                y_position -= 14  # Anpassung des Zeilenabstands
 
             y_position -= 20  # Leerschlag zwischen Kategorien
 
