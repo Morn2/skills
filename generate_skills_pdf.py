@@ -41,11 +41,11 @@ def create_document(filename, data):
 
         for name, icon_path in items:
             if y_position < 40:
-                column_index += 1
+                c.showPage()
                 y_position = height - 50
-                if column_index >= len(column_x_positions):
-                    c.showPage()
-                    column_index = 0
+                c.setFont("Helvetica-Bold", 11)
+                c.drawString(column_x_positions[column_index], y_position, category)
+                y_position -= 10
 
             c.setFont("Helvetica", 11)
             c.drawString(column_x_positions[column_index], y_position, name)
@@ -58,3 +58,4 @@ data = read_data_from_csv('daten.csv')
 
 # PDF-Dokument erstellen
 create_document("skills.pdf", data)
+
