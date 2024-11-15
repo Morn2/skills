@@ -67,13 +67,13 @@ def create_document(filename, data):
 
     # Erklärung als separaten Block am Ende der ersten Seite hinzufügen
     if "Erklärung" in data:
-        y_position = 100  # Platz für Erklärung am Ende der Seite reservieren
-        c.setFont("Helvetica-Bold", 11)
+        y_position = 80  # Platz für Erklärung am Ende der Seite reservieren
+        c.setFont("Helvetica-Bold", 15)
         c.drawString(50, y_position, "Erklärung")
         y_position -= 10
 
         for name, icon_path in data["Erklärung"]:
-            c.setFont("Helvetica", 11)
+            c.setFont("Helvetica", 15)
             c.drawString(50, y_position, name)
             y_position -= 10
 
