@@ -39,8 +39,7 @@ def create_document(filename, data):
 
             for name, icon_path in data[category]:
                 if y_position < 40:
-                    y_position = height - 50
-                    c.showPage()
+                    break
 
                 c.setFont("Helvetica", 11)
                 c.drawString(column_x_positions[0], y_position, name)
@@ -58,8 +57,7 @@ def create_document(filename, data):
 
             for name, icon_path in data[category]:
                 if y_position < 40:
-                    y_position = height - 50
-                    c.showPage()
+                    break
 
                 c.setFont("Helvetica", 11)
                 c.drawString(column_x_positions[1], y_position, name)
@@ -67,10 +65,9 @@ def create_document(filename, data):
 
             y_position -= 20  # Leerschlag zwischen Kategorien
 
-    # Erklärung als separaten Block am Ende hinzufügen
+    # Erklärung als separaten Block am Ende der ersten Seite hinzufügen
     if "Erklärung" in data:
-        c.showPage()  # Neue Seite für den Erklärung Block
-        y_position = 50  # Unten auf der Seite beginnen
+        y_position = 100  # Platz für Erklärung am Ende der Seite reservieren
         c.setFont("Helvetica-Bold", 11)
         c.drawString(50, y_position, "Erklärung")
         y_position -= 10
