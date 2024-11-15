@@ -28,28 +28,44 @@ def create_document(filename, data):
     column_index = 0
 
     left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur", "Erklärung"]
+    right_categories = ["Software Systeme", "Programierschsprachen", "Software Kentnisse", "Hardware Kentnisse"]
 
-    for category, items in data.items():
-        if category in left_categories:
-            column_index = 0
-        else:
-            column_index = 1
+    # Zuerst die linken Kategorien
+    for category in left_categories:
+        if category in data:
+            c.setFont("Helvetica-Bold", 11)
+            c.drawString(column_x_positions[0], y_position, category)
+            y_position -= 10
 
-        c.setFont("Helvetica-Bold", 11)
-        c.drawString(column_x_positions[column_index], y_position, category)
-        y_position -= 10  # Reduziere den Leerraum hier
+            for name, icon_path in data[category]:
+                if y_position < 40:
+                    y_position = height - 50
+                    c.showPage()
 
-        for name, icon_path in items:
-            if y_position < 40:
-                c.showPage()
-                y_position = height - 50
-                c.setFont("Helvetica-Bold", 11)
-                c.drawString(column_x_positions[column_index], y_position, category)
+                c.setFont("Helvetica", 11)
+                c.drawString(column_x_positions[0], y_position, name)
                 y_position -= 10
 
-            c.setFont("Helvetica", 11)
-            c.drawString(column_x_positions[column_index], y_position, name)
+            y_position -= 20  # Leerschlag zwischen Kategorien
+
+    # Dann die rechten Kategorien
+    y_position = height - 50  # Reset y_position for the right column
+    for category in right_categories:
+        if category in data:
+            c.setFont("Helvetica-Bold", 11)
+            c.drawString(column_x_positions[1], y_position, category)
             y_position -= 10
+
+            for name, icon_path in data[category]:
+                if y_position < 40:
+                    y_position = height - 50
+                    c.showPage()
+
+                c.setFont("Helvetica", 11)
+                c.drawString(column_x_positions[1], y_position, name)
+                y_position -= 10
+
+            y_position -= 20  # Leerschlag zwischen Kategorien
 
     c.save()
 
@@ -58,6 +74,3 @@ data = read_data_from_csv('daten.csv')
 
 # PDF-Dokument erstellen
 create_document("skills.pdf", data)
-
-
-
