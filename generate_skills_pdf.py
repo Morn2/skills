@@ -67,7 +67,7 @@ def create_document(filename, data):
 
     # Erklärung als separaten Block am Ende der ersten Seite hinzufügen
     if "Erklärung" in data:
-        y_position = 130  # Platz für Erklärung am Ende der Seite reservieren
+        y_position = 100  # Platz für Erklärung am Ende der Seite reservieren
         c.setFont("Helvetica-Bold", 14)  # Verringert um 1
         c.drawString(50, y_position, "Erklärung")
         y_position -= 20  # Anpassung des Zeilenabstands

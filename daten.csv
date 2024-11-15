@@ -4,13 +4,12 @@ SMD Löten,3,Hardware Reparatur,SMD Löten.png
 Feines Handwerk,4,Hardware Reparatur,Feines Handwerk.png
 Exakt,5,Hardware Reparatur,Exakt.png
 Kabelbau,4,Hardware Reparatur,Kabelbau.png
-Lesen von Schema und Service Manuals,5,Hardware Reparatur,Lesen von Schema und Service Manuals.png
-Zeichnen von Schema und Service Manuals,3,Hardware Reparatur,Zeichnen von Schema und Service Manuals.png
+Manuals verstehen,5,Hardware Reparatur,Lesen von Schema und Service Manuals.png
 Level 1 Reparaturen,5,Hardware Reparatur,Level 1 Reparaturen.png
 Level 2 Reparaturen ,5,Hardware Reparatur,Level 2 Reparaturen.png
 Level 3 Reparaturen,4,Hardware Reparatur,Level 3 Reparaturen.png
-Manjaro v Arch Linux,4,Software Systeme,Manjaro v Arch Linux.png
-Debian v Ubuntu v Kali v Fedora,3,Software Systeme,Debian v Ubuntu v Kali v Fedora.png
+Manjaro/Arch Linux,4,Software Systeme,Manjaro v Arch Linux.png
+Debian/Ubuntu/Kali/Fedora Linux,3,Software Systeme,Debian v Ubuntu v Kali v Fedora.png
 Apple IOS,4,Software Systeme,Apple IOS.png
 Mac OS und Mac OS ARM,4,Software Systeme,Mac OS und Mac OS ARM.png
 Apple iPad OS,4,Software Systeme,Apple iPad OS.png
@@ -27,7 +26,7 @@ BASH,1,Programierschsprachen,BASH.png
 PHP,1,Programierschsprachen,PHP.png
 Microsoft Office,4,Software Kentnisse,Microsoft Office.png
 Google Dienste,4,Software Kentnisse,Google Dienste.png
-Jiira / Confluence,3,Software Kentnisse,Jiira / Confluence.png
+Jiira/Confluence,3,Software Kentnisse,Jiira / Confluence.png
 Citrix,2,Software Kentnisse,Citrix.png
 Umgang mit KI,4,Software Kentnisse,Umgang mit KI.png
 GitHub,3,Software Kentnisse,GitHub.png
