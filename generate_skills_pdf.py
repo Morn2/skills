@@ -1,9 +1,27 @@
-import csv
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
+import csv
 import os
 
+# Funktion zur Einstellung der Icon-Parameter
+def set_icon_parameters(height=13, width=13, y_offset=0):
+    return {"height": height, "width": width, "y_offset": y_offset}
+
+# Funktion zum Zeichnen von Text und Bild
+def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params):
+    c.setFont("Helvetica", font_size)
+    text_width = c.stringWidth(text, "Helvetica", font_size)
+    c.drawString(x, y, text)
+    if image_path and os.path.exists(image_path):
+        try:
+            image = ImageReader(image_path)
+            c.drawImage(image, x + text_width + 5, y - font_size * 0.75 + icon_params["y_offset"],
+                        width=icon_params["width"], height=icon_params["height"])
+        except Exception as e:
+            print(f"Error loading image {image_path}: {e}")
+
+# CSV-Daten lesen
 def read_data_from_csv(file_path):
     data = {}
     with open(file_path, newline='', encoding='utf-8') as csvfile:
@@ -15,6 +33,7 @@ def read_data_from_csv(file_path):
             data[category].append((row['Name'], row['Icon']))
     return data
 
+# PDF-Dokument erstellen
 def create_document(filename, data):
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
@@ -29,16 +48,7 @@ def create_document(filename, data):
     left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur"]
     right_categories = ["Software Systeme", "Programierschsprachen", "Software Kentnisse", "Hardware Kentnisse"]
 
-    def draw_text_and_image(c, text, image_path, x, y, font_size):
-        c.setFont("Helvetica", font_size)
-        text_width = c.stringWidth(text, "Helvetica", font_size)
-        c.drawString(x, y, text)
-        if image_path and os.path.exists(image_path):
-            try:
-                image = ImageReader(image_path)
-                c.drawImage(image, x + text_width + 5, y - font_size * 0.75, width=font_size, height=font_size)
-            except Exception as e:
-                print(f"Error loading image {image_path}: {e}")
+    icon_params = set_icon_parameters(height=15, width=15, y_offset=2)
 
     for category in left_categories:
         if category in data:
@@ -50,7 +60,7 @@ def create_document(filename, data):
                 if y_position < 40:
                     break
 
-                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[0], y_position, 13)
+                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[0], y_position, 13, icon_params)
                 y_position -= 13
 
             y_position -= 20
@@ -66,7 +76,7 @@ def create_document(filename, data):
                 if y_position < 40:
                     break
 
-                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[1], y_position, 13)
+                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[1], y_position, 13, icon_params)
                 y_position -= 13
 
             y_position -= 20
