@@ -8,8 +8,19 @@ import os
 def set_icon_parameters(height=13, width=13, y_offset=0):
     return {"height": height, "width": width, "y_offset": y_offset}
 
+# Debugging-Datei initialisieren
+def initialize_debugging_file(debug_file):
+    with open(debug_file, 'w') as f:
+        f.write("Debugging Log for Missing Icons\n")
+        f.write("="*40 + "\n")
+
+# Fehlende Icons protokollieren
+def log_missing_icon(debug_file, icon_name, reason):
+    with open(debug_file, 'a') as f:
+        f.write(f"Missing Icon: {icon_name}, Reason: {reason}\n")
+
 # Funktion zum Zeichnen von Text und Bild
-def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params):
+def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params, debug_file):
     c.setFont("Helvetica", font_size)
     text_width = c.stringWidth(text, "Helvetica", font_size)
     c.drawString(x, y, text)
@@ -19,7 +30,9 @@ def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params):
             c.drawImage(image, x + text_width + 5, y - font_size * 0.75 + icon_params["y_offset"],
                         width=icon_params["width"], height=icon_params["height"])
         except Exception as e:
-            print(f"Error loading image {image_path}: {e}")
+            log_missing_icon(debug_file, image_path, f"Error loading image: {e}")
+    else:
+        log_missing_icon(debug_file, image_path, "File does not exist")
 
 # CSV-Daten lesen
 def read_data_from_csv(file_path):
@@ -34,7 +47,7 @@ def read_data_from_csv(file_path):
     return data
 
 # PDF-Dokument erstellen
-def create_document(filename, data):
+def create_document(filename, data, debug_file):
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
 
@@ -60,7 +73,7 @@ def create_document(filename, data):
                 if y_position < 40:
                     break
 
-                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[0], y_position, 13, icon_params)
+                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[0], y_position, 13, icon_params, debug_file)
                 y_position -= 13
 
             y_position -= 20
@@ -76,7 +89,7 @@ def create_document(filename, data):
                 if y_position < 40:
                     break
 
-                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[1], y_position, 13, icon_params)
+                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[1], y_position, 13, icon_params, debug_file)
                 y_position -= 13
 
             y_position -= 20
@@ -97,9 +110,13 @@ def create_document(filename, data):
 # Pfad des aktuellen Skripts ermitteln
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file_path = os.path.join(script_dir, 'daten.csv')
+debug_file_path = os.path.join(script_dir, 'debug_log.txt')
+
+# Debugging-Datei initialisieren
+initialize_debugging_file(debug_file_path)
 
 # Daten aus CSV-Datei lesen
 data = read_data_from_csv(csv_file_path)
 
 # PDF-Dokument erstellen
-create_document("skills.pdf", data)
+create_document("skills.pdf", data, debug_file_path)
