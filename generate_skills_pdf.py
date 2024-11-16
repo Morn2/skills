@@ -48,7 +48,7 @@ def create_document(filename, data):
     left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur"]
     right_categories = ["Software Systeme", "Programierschsprachen", "Software Kentnisse", "Hardware Kentnisse"]
 
-    icon_params = set_icon_parameters(height=15, width=15, y_offset=2)
+    icon_params = set_icon_parameters(height=13, width=13, y_offset=7)
 
     for category in left_categories:
         if category in data:
