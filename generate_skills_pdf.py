@@ -1,4 +1,3 @@
-
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
@@ -60,7 +59,7 @@ def create_document(filename, data, debug_file):
     column_x_positions = [50, width / 2]
 
     left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur"]
-    right_categories = ["Software Systeme", "Programierschsprachen", "Software Kentnisse", "Hardware Kentnisse"]
+    right categories = ["Software Systeme", "Programierschsprachen", "Software Kentnisse", "Hardware Kentnisse"]
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=7)
 
@@ -80,7 +79,7 @@ def create_document(filename, data, debug_file):
             y_position -= 20
 
     y_position = height - 50
-    for category in right_categories:
+    for category in right categories:
         if category in data:
             c.setFont("Helvetica-Bold", 13)
             c.drawString(column_x_positions[1], y_position, category)
@@ -121,4 +120,3 @@ data = read_data_from_csv(csv_file_path)
 
 # PDF-Dokument erstellen
 create_document("skills.pdf", data, debug_file_path)
-
