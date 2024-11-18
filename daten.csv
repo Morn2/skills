@@ -35,6 +35,7 @@ Notion,3,Software Kentnisse,Notion.png
 NeoVim,3,Software Kentnisse,NeoVim.png
 Terminal,4,Software Kentnisse,Terminal.png
 SAP,3,Software Kentnisse,SAP.png
+Bildbearbeitung,4,Software Kentnisse,Gimp.png
 MS Teams,1,Software Kentnisse,MS Teams.png
 Laptop ,5,Hardware Kentnisse,Laptop.png
 Tablet,4,Hardware Kentnisse,Tablet.png
@@ -64,8 +65,8 @@ Fehlerbehebung,4,Arbeitsabläufe,Fehlerbehebung.png
 Refurbishment,5,Arbeitsabläufe,Refurbishment.png
 Automatisierung von Arbeit,3,Arbeitsabläufe,Automatisierung von Arbeit.png
 Sicherheitsbewusstsein,5,Arbeitsabläufe,Sicherheitsbewusstsein.png
-Grundkentnisse,1,Erklärung,Grundkentnisse.png
-Gutes theoretisches Wissen,2,Erklärung,Gutes theoretisches Wissen.png
-Erfahrung in Praktik und Theorie,3,Erklärung,Erfahrung in Praktik und Theorie.png
-Gute praktische und theoretische Kentnisse,4,Erklärung,Gute praktische und theoretische Kentnisse.png
-Sehr gute praktische und theoretische Kentnisse,5,Erklärung,Sehr gute praktische und theoretische Kentnisse.png
+Grundkentnisse,,Erklärung,
+Gutes theoretisches Wissen,,Erklärung,
+Erfahrung in Praktik und Theorie,,Erklärung,
+Gute praktische und theoretische Kentnisse,,Erklärung,
+Sehr gute praktische und theoretische Kentnisse,,Erklärung,
