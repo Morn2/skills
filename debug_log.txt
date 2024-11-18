@@ -1,14 +1,2 @@
 Debugging Log for Missing Icons
 ========================================
-Missing Icon: Icons/PC Dekstop.png, Reason: File does not exist
-Missing Icon: Icons/Car-Hi-Fi.png, Reason: File does not exist
-Missing Icon: Icons/Smartwatch.png, Reason: File does not exist
-Missing Icon: Icons/Elektrotrechnik Bauteile.png, Reason: File does not exist
-Missing Icon: Icons/Kostenvoranschläge erstellen.png, Reason: File does not exist
-Missing Icon: Icons/Feines Handwerk.png, Reason: File does not exist
-Missing Icon: Icons/Apple iPad OS.png, Reason: File does not exist
-Missing Icon: Icons/Jiira / Confluence.png, Reason: File does not exist
-Missing Icon: Icons/PC Dekstop.png, Reason: File does not exist
-Missing Icon: Icons/Car-Hi-Fi.png, Reason: File does not exist
-Missing Icon: Icons/Smartwatch.png, Reason: File does not exist
-Missing Icon: Icons/Elektrotrechnik Bauteile.png, Reason: File does not exist
