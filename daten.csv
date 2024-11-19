@@ -1,70 +1,70 @@
 Name,Wert,Kategorie,Icon
-Löten,4,Hardware Reparatur,Löten.png
-SMD Löten,3,Hardware Reparatur,SMD Löten.png
-Feines Handwerk,4,Hardware Reparatur,Feines Handwerk.png
-Exakt,5,Hardware Reparatur,Exakt.png
-Kabelbau,4,Hardware Reparatur,Kabelbau.png
-Manuals verstehen,5,Hardware Reparatur,Lesen von Schema und Service Manuals.png
-Level 1 Reparaturen,5,Hardware Reparatur,Level 1 Reparaturen.png
-Level 2 Reparaturen ,5,Hardware Reparatur,Level 2 Reparaturen.png
-Level 3 Reparaturen,4,Hardware Reparatur,Level 3 Reparaturen.png
-Manjaro/Arch Linux,4,Software Systeme,Manjaro v Arch Linux.png
-Debian/Ubuntu/Kali/Fedora Linux,3,Software Systeme,Debian v Ubuntu v Kali v Fedora.png
-Apple IOS,4,Software Systeme,Apple IOS.png
-Mac OS und Mac OS ARM,4,Software Systeme,Mac OS und Mac OS ARM.png
-Apple iPad OS,4,Software Systeme,Apple iPad OS.png
-Android,4,Software Systeme,Android.png
-Manjaro ARM,4,Software Systeme,Manjaro ARM.png
-Windows ,3,Software Systeme,Windows.png
-C++,1,Programierschsprachen,C++.png
-Python,2,Programierschsprachen,Python.png
-Lua,2,Programierschsprachen,Lua.png
-VBA,2,Programierschsprachen,VBA.png
-SQL,1,Programierschsprachen,SQL.png
-Javascript,1,Programierschsprachen,Javascript.png
-BASH,1,Programierschsprachen,BASH.png
-PHP,1,Programierschsprachen,PHP.png
-Microsoft Office,4,Software Kentnisse,Microsoft Office.png
-Google Dienste,4,Software Kentnisse,Google Dienste.png
-Jira/Confluence,3,Software Kentnisse,Confluence und Jira.png
-Citrix,2,Software Kentnisse,Citrix.png
-Umgang mit KI,4,Software Kentnisse,Umgang mit KI.png
-GitHub,3,Software Kentnisse,GitHub.png
-Asana,3,Software Kentnisse,Asana.png
-Notion,3,Software Kentnisse,Notion.png
-NeoVim,3,Software Kentnisse,NeoVim.png
-Terminal,4,Software Kentnisse,Terminal.png
-SAP,3,Software Kentnisse,SAP.png
-Bildbearbeitung,4,Software Kentnisse,Gimp.png
-MS Teams,1,Software Kentnisse,MS Teams.png
-Laptop ,5,Hardware Kentnisse,Laptop.png
-Tablet,4,Hardware Kentnisse,Tablet.png
-Smartphone,5,Hardware Kentnisse,Smartphone.png
-Desktop PC,5,Hardware Kentnisse,PC.png
-Display v TV,5,Hardware Kentnisse,Display v TV.png
-Hi-Fi Audio,4,Hardware Kentnisse,Hi-Fi Audio.png
-Video,4,Hardware Kentnisse,Video.png
-Eventtechnik,2,Hardware Kentnisse,Eventtechnik.png
-Projektor ,2,Hardware Kentnisse,Projektor.png
-iMac,5,Hardware Kentnisse,iMac.png
-iPod ,5,Hardware Kentnisse,iPod.png
-Kopfhörer,4,Hardware Kentnisse,Kopfhörer.png
-Lautsprecher,5,Hardware Kentnisse,Lautsprecher.png
-Car-Hi-Fi,3,Hardware Kentnisse,Car-Hi-Fi.png
-Smartwatch,3,Hardware Kentnisse,Smartwatch.png
-DVB Receiver,4,Hardware Kentnisse,DVB Receiver.png
-Elektrotrechnik Bauteile,3,Hardware Kentnisse,Elektrotechnik.png
-Drucker ,4,Hardware Kentnisse,Drucker.png
-Ersatzteilverwaltung,5,Arbeitsabläufe,Ersatzteilverwaltung.png
-Kostenvoranschläge erstellen,5,Arbeitsabläufe,Kostenvoranschlag.png
-Kundensupport,5,Arbeitsabläufe,Kundensupport.png
-Zusammenarbeit mit Kunden,5,Arbeitsabläufe,Zusammenarbeit mit Kunden.png
-Garantieabgeltungen,5,Arbeitsabläufe,Garantieabgeltungen.png
-Fehlersuche,4,Arbeitsabläufe,Fehlersuche.png
-Fehlerbehebung,4,Arbeitsabläufe,Fehlerbehebung.png
-Refurbishment,5,Arbeitsabläufe,Refurbishment.png
-Automatisierung von Arbeit,3,Arbeitsabläufe,Automatisierung von Arbeit.png
-Sicherheitsbewusstsein,5,Arbeitsabläufe,Sicherheitsbewusstsein.png
+Löten,4,Hardware Reparatur,Löten.jpeg
+SMD Löten,3,Hardware Reparatur,SMD Löten.jpeg
+Feines Handwerk,4,Hardware Reparatur,Feines Handwerk.jpeg
+Exakt,5,Hardware Reparatur,Exakt.jpeg
+Kabelbau,4,Hardware Reparatur,Kabelbau.jpeg
+Manuals verstehen,5,Hardware Reparatur,Lesen von Schema und Service Manuals.jpeg
+Level 1 Reparaturen,5,Hardware Reparatur,Level 1 Reparaturen.jpeg
+Level 2 Reparaturen ,5,Hardware Reparatur,Level 2 Reparaturen.jpeg
+Level 3 Reparaturen,4,Hardware Reparatur,Level 3 Reparaturen.jpeg
+Manjaro/Arch Linux,4,Software Systeme,Manjaro v Arch Linux.jpeg
+Debian/Ubuntu/Kali/Fedora Linux,3,Software Systeme,Debian v Ubuntu v Kali v Fedora.jpeg
+Apple IOS,4,Software Systeme,Apple IOS.jpeg
+Mac OS und Mac OS ARM,4,Software Systeme,Mac OS und Mac OS ARM.jpeg
+Apple iPad OS,4,Software Systeme,Apple iPad OS.jpeg
+Android,4,Software Systeme,Android.jpeg
+Manjaro ARM,4,Software Systeme,Manjaro ARM.jpeg
+Windows ,3,Software Systeme,Windows.jpeg
+C++,1,Programierschsprachen,C++.jpeg
+Python,2,Programierschsprachen,Python.jpeg
+Lua,2,Programierschsprachen,Lua.jpeg
+VBA,2,Programierschsprachen,VBA.jpeg
+SQL,1,Programierschsprachen,SQL.jpeg
+Javascript,1,Programierschsprachen,Javascript.jpeg
+BASH,1,Programierschsprachen,BASH.jpeg
+PHP,1,Programierschsprachen,PHP.jpeg
+Microsoft Office,4,Software Kentnisse,Microsoft Office.jpeg
+Google Dienste,4,Software Kentnisse,Google Dienste.jpeg
+Jira/Confluence,3,Software Kentnisse,Confluence und Jira.jpeg
+Citrix,2,Software Kentnisse,Citrix.jpeg
+Umgang mit KI,4,Software Kentnisse,Umgang mit KI.jpeg
+GitHub,3,Software Kentnisse,GitHub.jpeg
+Asana,3,Software Kentnisse,Asana.jpeg
+Notion,3,Software Kentnisse,Notion.jpeg
+NeoVim,3,Software Kentnisse,NeoVim.jpeg
+Terminal,4,Software Kentnisse,Terminal.jpeg
+SAP,3,Software Kentnisse,SAP.jpeg
+Bildbearbeitung,4,Software Kentnisse,Gimp.jpeg
+MS Teams,1,Software Kentnisse,MS Teams.jpeg
+Laptop ,5,Hardware Kentnisse,Laptop.jpeg
+Tablet,4,Hardware Kentnisse,Tablet.jpeg
+Smartphone,5,Hardware Kentnisse,Smartphone.jpeg
+Desktop PC,5,Hardware Kentnisse,PC.jpeg
+Display v TV,5,Hardware Kentnisse,Display v TV.jpeg
+Hi-Fi Audio,4,Hardware Kentnisse,Hi-Fi Audio.jpeg
+Video,4,Hardware Kentnisse,Video.jpeg
+Eventtechnik,2,Hardware Kentnisse,Eventtechnik.jpeg
+Projektor ,2,Hardware Kentnisse,Projektor.jpeg
+iMac,5,Hardware Kentnisse,iMac.jpeg
+iPod ,5,Hardware Kentnisse,iPod.jpeg
+Kopfhörer,4,Hardware Kentnisse,Kopfhörer.jpeg
+Lautsprecher,5,Hardware Kentnisse,Lautsprecher.jpeg
+Car-Hi-Fi,3,Hardware Kentnisse,Car-Hi-Fi.jpeg
+Smartwatch,3,Hardware Kentnisse,Smartwatch.jpeg
+DVB Receiver,4,Hardware Kentnisse,DVB Receiver.jpeg
+Elektrotrechnik Bauteile,3,Hardware Kentnisse,Elektrotechnik.jpeg
+Drucker ,4,Hardware Kentnisse,Drucker.jpeg
+Ersatzteilverwaltung,5,Arbeitsabläufe,Ersatzteilverwaltung.jpeg
+Kostenvoranschläge erstellen,5,Arbeitsabläufe,Kostenvoranschlag.jpeg
+Kundensupport,5,Arbeitsabläufe,Kundensupport.jpeg
+Zusammenarbeit mit Kunden,5,Arbeitsabläufe,Zusammenarbeit mit Kunden.jpeg
+Garantieabgeltungen,5,Arbeitsabläufe,Garantieabgeltungen.jpeg
+Fehlersuche,4,Arbeitsabläufe,Fehlersuche.jpeg
+Fehlerbehebung,4,Arbeitsabläufe,Fehlerbehebung.jpeg
+Refurbishment,5,Arbeitsabläufe,Refurbishment.jpeg
+Automatisierung von Arbeit,3,Arbeitsabläufe,Automatisierung von Arbeit.jpeg
+Sicherheitsbewusstsein,5,Arbeitsabläufe,Sicherheitsbewusstsein.jpeg
 Grundkentnisse,,Erklärung,
 Gutes theoretisches Wissen,,Erklärung,
 Erfahrung in Praktik und Theorie,,Erklärung,
