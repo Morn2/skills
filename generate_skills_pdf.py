@@ -3,7 +3,7 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 import csv
 import os
-from PIL import Image 
+from PIL import Image
 
 # Funktion zur Einstellung der Icon-Parameter
 def set_icon_parameters(height=13, width=13, y_offset=0):
@@ -20,8 +20,7 @@ def log_missing_icon(debug_file, icon_name, reason):
     with open(debug_file, 'a') as f:
         f.write(f"Missing Icon: {icon_name}, Reason: {reason}\n")
 
-from PIL import Image
-
+# Text und Bild zeichnen
 def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params, debug_file):
     c.setFont("Helvetica", font_size)
     text_width = c.stringWidth(text, "Helvetica", font_size)
@@ -32,14 +31,18 @@ def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params, debug
     if image_path and os.path.exists(image_path):
         try:
             image = Image.open(image_path)
-            c.drawImage(image, x + text_width + 5, y - font_size * 0.75 + icon_params["y_offset"],
+            temp_image_path = "temp_image.png"
+            image.save(temp_image_path)  # Temporär als PNG speichern
+            image_reader = ImageReader(temp_image_path)
+            c.drawImage(image_reader, x + text_width + 5, y - font_size * 0.75 + icon_params["y_offset"],
                         width=icon_params["width"], height=icon_params["height"])
             with open(debug_file, 'a') as f:
                 f.write(f"Successfully loaded icon: '{image_path}', File Info: {file_info}\n")
+            os.remove(temp_image_path)  # Temporäre Datei entfernen
         except Exception as e:
-            log_missing_icon(debug_file, image_path, f"Error loading image: {e}", file_info)
+            log_missing_icon(debug_file, image_path, f"Error loading image: {e}")
     else:
-        log_missing_icon(debug_file, image_path, "File does not exist", file_info)
+        log_missing_icon(debug_file, image_path, "File does not exist")
 
 # CSV-Daten lesen
 def read_data_from_csv(file_path):
@@ -127,6 +130,3 @@ data = read_data_from_csv(csv_file_path)
 
 # PDF-Dokument erstellen
 create_document("skills.pdf", data, debug_file_path)
-
-
-
