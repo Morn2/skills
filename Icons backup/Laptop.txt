@@ -1,0 +1,96 @@
+
+Image:
+  Filename: Tablet.png
+  Permissions: rw-r--r--
+  Format: PNG (Portable Network Graphics)
+  Mime type: image/png
+  Class: DirectClass
+  Geometry: 802x998+0+0
+  Resolution: 118.11x118.11
+  Print size: 6.79029x8.44976
+  Units: PixelsPerCentimeter
+  Colorspace: Gray
+  Type: GrayscaleAlpha
+  Endianness: Undefined
+  Depth: 8-bit
+  Channels: 2.0
+  Channel depth:
+    Gray: 8-bit
+    Alpha: 4-bit
+  Channel statistics:
+    Pixels: 800396
+    Gray:
+      min: 0  (0)
+      max: 255 (1)
+      mean: 112.811 (0.442397)
+      median: 0 (0)
+      standard deviation: 125.767 (0.493203)
+      kurtosis: -1.9356
+      skewness: 0.231169
+      entropy: 0.166302
+    Alpha:
+      min: 0  (0)
+      max: 255 (1)
+      mean: 143.651 (0.563337)
+      median: 255 (1)
+      standard deviation: 126.469 (0.495957)
+      kurtosis: -1.93472
+      skewness: -0.255402
+      entropy: 0.312196
+  Alpha: graya(255,0)   #FFFFFF00
+  Colors: 405
+  Rendering intent: Undefined
+  Gamma: 0.454545
+  Matte color: grey74
+  Background color: white
+  Border color: srgb(223,223,223)
+  Transparent color: black
+  Interlace: None
+  Intensity: Undefined
+  Compose: Over
+  Page geometry: 802x998+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: Zip
+  Orientation: TopLeft
+  Profiles:
+    Profile-exif: 282 bytes
+    Profile-icc: 544 bytes
+    Profile-xmp: 3426 bytes
+  Properties:
+    date:create: 2024-11-18T18:51:59+00:00
+    date:modify: 2024-11-18T18:51:59+00:00
+    date:timestamp: 2024-11-19T20:19:06+00:00
+    exif:BitsPerSample: 8, 8, 8
+    exif:ColorSpace: 1
+    exif:DateTime: 2024:11:18 19:51:59
+    exif:ExifOffset: 220
+    exif:ImageDescription: Created with GIMP
+    exif:ImageLength: 998
+    exif:ImageWidth: 802
+    exif:Software: GIMP 2.10.38
+    exif:UserComment: 
+    icc:copyright: Public Domain
+    icc:description: GIMP built-in D65 Grayscale with sRGB TRC
+    icc:manufacturer: GIMP
+    icc:model: D65 Grayscale with sRGB TRC
+    png:bKGD: chunk was found (see Background color, above)
+    png:iCCP: chunk was found
+    png:IHDR.bit-depth-orig: 8
+    png:IHDR.bit_depth: 8
+    png:IHDR.color-type-orig: 4
+    png:IHDR.color_type: 4 (GrayAlpha)
+    png:IHDR.interlace_method: 0 (Not interlaced)
+    png:IHDR.width,height: 802, 998
+    png:pHYs: x_res=11811, y_res=11811, units=1
+    signature: 06952c40ec9b8ac38a138bf450933684592d8eb913a4cfc6907643a0b89918be
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 17426B
+  Number pixels: 800396
+  Pixel cache type: Memory
+  Pixels per second: 21.4785MP
+  User time: 0.090u
+  Elapsed time: 0:01.037
+  Version: ImageMagick 7.1.1-38 Q16-HDRI x86_64 22398 https://imagemagick.org
