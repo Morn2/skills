@@ -129,3 +129,4 @@ data = read_data_from_csv(csv_file_path)
 create_document("skills.pdf", data, debug_file_path)
 
 
+
