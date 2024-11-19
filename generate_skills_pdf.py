@@ -115,7 +115,10 @@ def create_document(filename, data, debug_file):
             c.drawString(50, y_position, name)
             y_position -= 15
 
+    # Save the canvas and log the save action
     c.save()
+    with open(debug_file, 'a') as f:
+        f.write(f"PDF saved as: {filename}\n")
 
 # Pfad des aktuellen Skripts ermitteln
 script_dir = os.path.dirname(os.path.abspath(__file__))

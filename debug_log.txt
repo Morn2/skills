@@ -168,3 +168,4 @@ Processing text: 'Elektrotrechnik Bauteile' with icon: 'Icons/Elektrotechnik.jpg
 Successfully loaded icon: 'Icons/Elektrotechnik.jpg', File Info: /home/aaron/Code/GitHub/Skills/Icons/Elektrotechnik.jpg
 Processing text: 'Drucker ' with icon: 'Icons/Drucker.jpg' at position: (297.6377952755906, 81.8897637795277), File Info: /home/aaron/Code/GitHub/Skills/Icons/Drucker.jpg
 Successfully loaded icon: 'Icons/Drucker.jpg', File Info: /home/aaron/Code/GitHub/Skills/Icons/Drucker.jpg
+PDF saved as: skills.pdf
