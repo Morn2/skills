@@ -6,28 +6,38 @@ import os
 from PIL import Image
 
 # Funktion zur Einstellung der Icon-Parameter
+
+
 def set_icon_parameters(height=13, width=13, y_offset=0):
     return {"height": height, "width": width, "y_offset": y_offset}
 
 # Debugging-Datei initialisieren
+
+
 def initialize_debugging_file(debug_file):
     with open(debug_file, 'w') as f:
         f.write("Debugging Log for Missing Icons\n")
         f.write("="*40 + "\n")
 
 # Fehlende Icons protokollieren
+
+
 def log_missing_icon(debug_file, icon_name, reason):
     with open(debug_file, 'a') as f:
         f.write(f"Missing Icon: {icon_name}, Reason: {reason}\n")
 
 # Text und Bild zeichnen
+
+
 def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params, debug_file):
     c.setFont("Helvetica", font_size)
     text_width = c.stringWidth(text, "Helvetica", font_size)
     c.drawString(x, y, text)
-    file_info = os.path.abspath(image_path)  # Get the absolute path of the icon
+    # Get the absolute path of the icon
+    file_info = os.path.abspath(image_path)
     with open(debug_file, 'a') as f:
-        f.write(f"Processing text: '{text}' with icon: '{image_path}' at position: ({x}, {y}), File Info: {file_info}\n")
+        f.write(f"Processing text: '{text}' with icon: '{
+                image_path}' at position: ({x}, {y}), File Info: {file_info}\n")
     if image_path and os.path.exists(image_path):
         try:
             image = Image.open(image_path)
@@ -37,14 +47,18 @@ def draw_text_and_image(c, text, image_path, x, y, font_size, icon_params, debug
             c.drawImage(image_reader, x + text_width + 5, y - font_size * 0.75 + icon_params["y_offset"],
                         width=icon_params["width"], height=icon_params["height"])
             with open(debug_file, 'a') as f:
-                f.write(f"Successfully loaded icon: '{image_path}', File Info: {file_info}\n")
+                f.write(f"Successfully loaded icon: '{
+                        image_path}', File Info: {file_info}\n")
             os.remove(temp_image_path)  # Temporäre Datei entfernen
         except Exception as e:
-            log_missing_icon(debug_file, image_path, f"Error loading image: {e}")
+            log_missing_icon(debug_file, image_path,
+                             f"Error loading image: {e}")
     else:
         log_missing_icon(debug_file, image_path, "File does not exist")
 
 # CSV-Daten lesen
+
+
 def read_data_from_csv(file_path):
     data = {}
     with open(file_path, newline='', encoding='utf-8') as csvfile:
@@ -57,6 +71,8 @@ def read_data_from_csv(file_path):
     return data
 
 # PDF-Dokument erstellen
+
+
 def create_document(filename, data, debug_file):
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
@@ -68,8 +84,10 @@ def create_document(filename, data, debug_file):
     y_position = height - 50
     column_x_positions = [50, width / 2]
 
-    left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur"]
-    right_categories = ["Software Systeme", "Programierschsprachen", "Software Kentnisse", "Hardware Kentnisse"]
+    left_categories = ["Hardware Kentnisse",
+                       "Arbeitsabläufe", "Hardware Reparatur"]
+    right_categories = ["Software Systeme", "Programierschsprachen",
+                        "Software Kentnisse", "Hardware Kentnisse"]
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=7)
 
@@ -83,7 +101,8 @@ def create_document(filename, data, debug_file):
                 if y_position < 40:
                     break
 
-                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[0], y_position, 13, icon_params, debug_file)
+                draw_text_and_image(
+                    c, name, f"Icons/{icon_path}", column_x_positions[0], y_position, 13, icon_params, debug_file)
                 y_position -= 13
 
             y_position -= 20
@@ -99,7 +118,8 @@ def create_document(filename, data, debug_file):
                 if y_position < 40:
                     break
 
-                draw_text_and_image(c, name, f"Icons/{icon_path}", column_x_positions[1], y_position, 13, icon_params, debug_file)
+                draw_text_and_image(
+                    c, name, f"Icons/{icon_path}", column_x_positions[1], y_position, 13, icon_params, debug_file)
                 y_position -= 13
 
             y_position -= 20
@@ -119,6 +139,7 @@ def create_document(filename, data, debug_file):
     c.save()
     with open(debug_file, 'a') as f:
         f.write(f"PDF saved as: {filename}\n")
+
 
 # Pfad des aktuellen Skripts ermitteln
 script_dir = os.path.dirname(os.path.abspath(__file__))
