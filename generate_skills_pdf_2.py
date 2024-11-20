@@ -6,31 +6,28 @@ import csv
 import os
 
 
-def set_icon_parameters(height=13, width=13, y_offset=0):
+def set_icon_parameters(height=20, width=20, y_offset=0):
     return {"height": height, "width": width, "y_offset": y_offset}
 
-
-def get_color_for_value(value_name):
-    colors = {
-        "Grundkentnisse": HexColor("#FF9999"),
-        "Gutes theoretisches Wissen": HexColor("#FFCC99"),
-        "Erfahrung in Praktik und Theorie": HexColor("#FFFF99"),
-        "Gute praktische und theoretische Kentnisse": HexColor("#CCFF99"),
-        "Sehr gute praktische und theoretische Kentnisse": HexColor("#99CC99"),
-    }
-    return colors.get(value_name, HexColor("#FFFFFF"))
+# Funktion zur Farbzuordnung basierend auf numerischen Werten
 
 
-def colorize_icon(icon_path, output_path, color_hex):
-    with Image.open(icon_path) as img:
-        img = img.convert("RGBA")
-        r, g, b = Image.new("RGB", (1, 1), color_hex).getpixel((0, 0))
-        new_data = [
-            (r, g, b, item[3]) if item[3] > 0 else item
-            for item in img.getdata()
-        ]
-        img.putdata(new_data)
-        img.save(output_path)
+def get_color_for_value(value):
+    if value == "1":
+        return HexColor("#ADD8E6")  # Hellblau
+    elif value == "2":
+        return HexColor("#87CEEB")  # Mittelblau
+    elif value == "3":
+        return HexColor("#4682B4")  # Dunkelgrün
+    elif value == "4":
+        return HexColor("#5F9EA0")  # Kräftiges Blaugrün
+    elif value == "5":
+        return HexColor("#2E8B57")  # Dunkelgrün
+    else:
+        return HexColor("#FFFFFF")  # Standard: Weiß
+
+
+# Daten aus CSV lesen
 
 
 def read_data_from_csv(file_path):
@@ -40,14 +37,18 @@ def read_data_from_csv(file_path):
         for row in reader:
             category = row['Kategorie']
             icon = row['Icon'].strip() if row['Icon'] else None
+            value = row['Wert'].strip(
+            ) if 'Wert' in row and row['Wert'] else None
             if category not in data:
                 data[category] = []
             data[category].append({
                 "Name": row['Name'],
                 "Icon": icon,
-                "Value": row['Name'] if category == "Erklärung" else None
+                "Value": value
             })
     return data
+
+# PDF erstellen
 
 
 def create_pdf(filename, data, icons_folder):
@@ -62,7 +63,7 @@ def create_pdf(filename, data, icons_folder):
     c.line(margin, y_position - 2.5, width - margin, y_position - 2.5)
     y_position -= 30
 
-    icon_params = set_icon_parameters(height=13, width=13, y_offset=7)
+    icon_params = set_icon_parameters(height=20, width=20, y_offset=7)
 
     for category, items in data.items():
         c.setFont("Helvetica-Bold", 13)
@@ -74,35 +75,34 @@ def create_pdf(filename, data, icons_folder):
             icon_path = os.path.join(
                 icons_folder, item["Icon"]) if item["Icon"] else None
             color = get_color_for_value(item["Value"])
-            color_hex = "#{:02x}{:02x}{:02x}".format(
-                int(color.red * 255), int(color.green * 255), int(color.blue * 255)
-            )
+            num_icons = int(
+                item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
 
-            # Debugging-Ausgabe für Farben
-            print(f"Zeile: {name}, Wert: {item['Value']}, Farbe: {color}")
-
-            c.setFillColor(color)
-            c.rect(margin, y_position - 13, width -
-                   margin, 13, stroke=0, fill=1)
-            c.setFillColor(HexColor("#000000"))
-            c.setFont("Helvetica", 12)
-            c.drawString(margin + 5, y_position - 10, name)
-
+            # Hintergrund für Icons
             if icon_path and os.path.isfile(icon_path):
-                colored_icon_path = os.path.join(icons_folder, f"colored_{
-                                                 os.path.basename(icon_path)}")
-                colorize_icon(icon_path, colored_icon_path, color_hex)
+                rect_width = num_icons * (icon_params["width"] + 5) + 10
+                rect_height = icon_params["height"] + 10
+                c.setFillColor(color)
+                c.rect(margin + 100, y_position - rect_height,
+                       rect_width, rect_height, stroke=0, fill=1)
 
-                x_position = width - 100
+                # Icons zeichnen
                 try:
-                    c.drawImage(colored_icon_path, x_position,
-                                y_position - icon_params["height"],
-                                width=icon_params["width"],
-                                height=icon_params["height"], mask='auto')
+                    for i in range(num_icons):
+                        x_position = margin + 105 + i * \
+                            (icon_params["width"] + 5)
+                        c.drawImage(icon_path, x_position, y_position - rect_height + 5,
+                                    width=icon_params["width"],
+                                    height=icon_params["height"], mask='auto')
                 except Exception as e:
                     print(f"Fehler bei Icon '{icon_path}': {e}")
 
-            y_position -= 20
+            # Text zeichnen
+            c.setFillColor(HexColor("#000000"))  # Textfarbe schwarz
+            c.setFont("Helvetica", 12)
+            c.drawString(margin + 5, y_position - 10, name)
+
+            y_position -= 30
             if y_position < margin:
                 c.showPage()
                 y_position = height - margin
@@ -117,4 +117,3 @@ output_pdf_path = os.path.join(script_dir, 'skills_colored_final.pdf')
 
 data = read_data_from_csv(csv_file_path)
 create_pdf(output_pdf_path, data, icons_folder)
-
