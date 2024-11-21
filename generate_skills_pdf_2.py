@@ -9,6 +9,7 @@ import os
 def set_icon_parameters(height=20, width=20, y_offset=0):
     return {"height": height, "width": width, "y_offset": y_offset}
 
+
 # Funktion zur Farbzuordnung basierend auf numerischen Werten
 
 
@@ -55,21 +56,48 @@ def create_pdf(filename, data, icons_folder):
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
     margin = 50
-    y_position = height - margin
+    bottom_margin = 100  # Zusätzlicher Abstand zum unteren Rand
+    y_position_left = height - margin - -35
+    y_position_right = height - margin - -35
     column_width = (width - 2 * margin) / 2
 
-    c.setFont("Helvetica-Bold", 15)
-    c.drawString(margin, y_position, "Aaron Feldmann Skill Auflistung")
-    c.line(margin, y_position - 2.5, width - margin, y_position - 2.5)
-    y_position -= 30
+    c.setFont("Helvetica-Bold", 14)
+    c.drawString(margin, height - margin - -20,
+                 "Aaron Feldmann Skill Auflistung")
+    c.line(margin, height - margin - -10,
+           width - margin, height - margin - -10)
 
-    icon_params = set_icon_parameters(height=20, width=20, y_offset=7)
+    y_position_left -= 30
+    y_position_right -= 30
+
+    icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
+
+    # Kategorien in linke und rechte Spalte aufteilen
+    left_categories = ["Hardware Kentnisse",
+                       "Arbeitsabläufe", "Hardware Reparatur"]
+    right_categories = ["Software Systeme",
+                        "Programiersprachen", "Software Kentnisse"]
 
     for category, items in data.items():
-        c.setFont("Helvetica-Bold", 13)
-        c.drawString(margin, y_position, category)
-        y_position -= 20
+        if category in left_categories:
+            y_position = y_position_left
+            x_position = margin
+        elif category in right_categories:
+            y_position = y_position_right
+            x_position = margin + column_width
+        else:
+            continue
 
+        # Zusätzlicher Abstand zwischen Kategorien
+        y_position -= 10
+
+        # Kategorieüberschrift
+        c.setFont("Helvetica-Bold", 12)
+        c.setFillColor(HexColor("#000000"))  # Überschrift bleibt schwarz
+        c.drawString(x_position, y_position, category)
+        y_position -= 5  # Überschrift näher an die erste Zeile
+
+        # Inhalte der Kategorie
         for item in items:
             name = item["Name"]
             icon_path = os.path.join(
@@ -78,34 +106,49 @@ def create_pdf(filename, data, icons_folder):
             num_icons = int(
                 item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
 
-            # Hintergrund für Icons
-            if icon_path and os.path.isfile(icon_path):
-                rect_width = num_icons * (icon_params["width"] + 5) + 10
-                rect_height = icon_params["height"] + 10
-                c.setFillColor(color)
-                c.rect(margin + 100, y_position - rect_height,
-                       rect_width, rect_height, stroke=0, fill=1)
+            # Text zeichnen
+            c.setFillColor(HexColor("#000000"))  # Textfarbe schwarz
+            c.setFont("Helvetica", 10)
+            c.drawString(x_position + 5, y_position - 10, name)
 
-                # Icons zeichnen
+            # Icons zeichnen (eingefärbt)
+            if icon_path and os.path.isfile(icon_path):
                 try:
                     for i in range(num_icons):
-                        x_position = margin + 105 + i * \
-                            (icon_params["width"] + 5)
-                        c.drawImage(icon_path, x_position, y_position - rect_height + 5,
+                        icon_x_position = x_position + 100 + \
+                            i * (icon_params["width"] + 5)
+                        c.setFillColor(color)  # Icon-Farbe
+                        c.rect(icon_x_position, y_position - 15,
+                               icon_params["width"], icon_params["height"], stroke=0, fill=1)
+                        c.drawImage(icon_path, icon_x_position, y_position - 15,
                                     width=icon_params["width"],
                                     height=icon_params["height"], mask='auto')
                 except Exception as e:
                     print(f"Fehler bei Icon '{icon_path}': {e}")
 
-            # Text zeichnen
-            c.setFillColor(HexColor("#000000"))  # Textfarbe schwarz
-            c.setFont("Helvetica", 12)
-            c.drawString(margin + 5, y_position - 10, name)
+            y_position -= 20
 
-            y_position -= 30
-            if y_position < margin:
-                c.showPage()
-                y_position = height - margin
+        # Spaltenhöhe aktualisieren
+        if category in left_categories:
+            y_position_left = y_position
+        elif category in right_categories:
+            y_position_right = y_position
+
+        # Erklärung unten rechts in der rechten Spalte
+        explanation_x = margin + column_width  # Start der rechten Spalte
+        explanation_y = bottom_margin  # Abstand zum unteren Rand
+        c.setFont("Helvetica-Bold", 12)
+        c.drawString(explanation_x, explanation_y + 20, "Erklärung")
+
+        c.setFont("Helvetica", 10)
+        for item in data.get("Erklärung", []):
+            name = item["Name"]
+            color = get_color_for_value(item["Value"])
+            c.setFillColor(color)
+            c.rect(explanation_x, explanation_y, 200, 15, stroke=0, fill=1)
+            c.setFillColor(HexColor("#000000"))
+            c.drawString(explanation_x + 5, explanation_y + 3, name)
+            explanation_y -= 20
 
     c.save()
 
