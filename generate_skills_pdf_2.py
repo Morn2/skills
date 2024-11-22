@@ -146,7 +146,7 @@ def create_pdf(filename, data, icons_folder):
             name = item["Name"]
             color = get_color_for_value(item["Value"])
             c.setFillColor(color)
-            c.rect(explanation_x, explanation_y, 200, 15, stroke=0, fill=1)
+            c.rect(explanation_x, explanation_y, 225, 15, stroke=0, fill=1)
             c.setFillColor(HexColor("#000000"))
             c.drawString(explanation_x + 5, explanation_y + 3, name)
             explanation_y -= 20
