@@ -139,6 +139,13 @@ def create_pdf(filename, data, icons_folder):
     c.setFillColor(HexColor("#000000"))
     c.drawString(explanation_x, explanation_y + 20, "Erklärung")
 
+    # Breite des Textes berechnen
+    text_width = c.stringWidth("Erklärung", "Helvetica-Bold", 15)
+
+    # Linie unter dem Text zeichnen
+    c.line(explanation_x, explanation_y + 18,
+           explanation_x + text_width, explanation_y + 18)
+
     c.setFont("Helvetica", 10)
     for item in data.get("Erklärung", []):
         name = item["Name"]
