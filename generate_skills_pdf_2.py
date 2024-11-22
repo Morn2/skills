@@ -58,8 +58,8 @@ def create_pdf(filename, data, icons_folder):
                  "Aaron Feldmann Skill Auflistung")
     c.line(margin, height - margin - 10, width - margin, height - margin - 10)
 
-    y_position_left -= 30
-    y_position_right -= 30
+    y_position_left -= 5
+    y_position_right -= 5
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
