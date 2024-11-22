@@ -49,17 +49,18 @@ def create_pdf(filename, data, icons_folder):
     width, height = A4
     margin = 50
     bottom_margin = 100
-    y_position_left = height - margin - 35
-    y_position_right = height - margin - 35
+    y_position_left = height - margin - 1
+    y_position_right = height - margin - 1
     column_width = (width - 2 * margin) / 2
 
     c.setFont("Helvetica-Bold", 14)
-    c.drawString(margin, height - -10 - margin,
+    c.drawString(margin, height - -15 - margin,
                  "Aaron Feldmann Skill Auflistung")
-    c.line(margin, height - margin - 10, width - margin, height - margin - 10)
+    c.line(margin, height - margin - -10,
+           width - margin, height - margin - -10)
 
-    y_position_left -= -30
-    y_position_right -= -30
+    y_position_left -= 1
+    y_position_right -= 1
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
