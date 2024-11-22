@@ -156,6 +156,47 @@ def create_pdf(filename, data, icons_folder):
         c.drawString(explanation_x + 5, explanation_y + 3, name)
         explanation_y -= 20
 
+    # Python-Logo und Beschreibung hinzufügen
+    # Pfad zum Python-Logo
+    logo_path = os.path.join(icons_folder, "pl.png")
+    print(f"Pfad zum Logo: {logo_path}")  # Debug-Ausgabe
+    if not os.path.isfile(logo_path):
+        print("Das Python-Logo wurde nicht gefunden!")
+    logo_width = 200  # Breite des Logos
+    logo_height = 200  # Höhe des Logos
+    logo_x = width - margin - logo_width  # X-Position (rechtsbündig)
+    logo_y = bottom_margin - logo_height - 20  # Y-Position
+
+    # Logo zeichnen (falls vorhanden)
+    if os.path.isfile(logo_path):
+        try:
+            c.drawImage(
+                logo_path,
+                logo_x,
+                logo_y,
+                width=logo_width,
+                height=logo_height,
+                mask="auto",
+            )
+        except Exception as e:
+            print(f"Fehler beim Laden des Python-Logos: {e}")
+            print(f"Logo-Pfad: {logo_path}")
+
+    # Beschreibungstext hinzufügen
+    text_x = margin  # Text beginnt linksbündig
+    text_y = logo_y - 15  # Text direkt unter dem Logo
+    c.setFont("Helvetica", 10)
+    c.setFillColor(HexColor("#000000"))
+    c.drawString(
+        text_x,
+        text_y,
+        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.",
+    )
+    c.drawString(
+        text_x,
+        text_y - 12,
+        "Den Source Code finden Sie auf der Rückseite.",
+    )
     c.save()
 
 
