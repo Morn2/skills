@@ -182,16 +182,16 @@ def create_pdf(filename, data, icons_folder):
             print(f"Fehler beim Laden des Python-Logos: {e}")
             print(f"Logo-Pfad: {logo_path}")
 
-    # Beschreibungstext hinzufügen
-    text_x = margin  # Text beginnt linksbündig
-    text_y = logo_y - 15  # Text direkt unter dem Logo
-    c.setFont("Helvetica", 10)
-    c.setFillColor(HexColor("#000000"))
-    c.drawString(
-        text_x,
-        text_y,
-        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.",
-    )
+        # Beschreibungstext hinzufügen
+        text_x = logo_x  # Text beginnt unter dem Logo
+        text_y = logo_y - 20  # Text direkt unter dem Logo
+        c.setFont("Helvetica", 10)
+        c.setFillColor(HexColor("#000000"))
+        c.drawString(
+            text_x,
+            text_y,
+            "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.",
+        )
     c.drawString(
         text_x,
         text_y - 12,
