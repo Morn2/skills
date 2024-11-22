@@ -1,6 +1,5 @@
 import os
 import csv
-from PIL import Image
 from reportlab.lib.colors import HexColor
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
