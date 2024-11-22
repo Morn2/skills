@@ -165,7 +165,7 @@ def create_pdf(filename, data, icons_folder):
     logo_width = 200  # Breite des Logos
     logo_height = 200  # Höhe des Logos
     logo_x = width - margin - logo_width  # X-Position (rechtsbündig)
-    logo_y = bottom_margin - logo_height - 20  # Y-Position
+    logo_y = bottom_margin - logo_height - -120  # Y-Position
 
     # Logo zeichnen (falls vorhanden)
     if os.path.isfile(logo_path):
