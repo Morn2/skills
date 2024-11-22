@@ -7,7 +7,7 @@ from reportlab.lib.pagesizes import A4
 
 
 def set_icon_parameters(height=20, width=20, y_offset=0):
-    return {"height": height, "width": width, "y_offset": y_offset"}
+    return {"height": height, "width": width, "y_offset": y_offset}
 
 
 def get_color_for_value(value):
@@ -32,7 +32,8 @@ def read_data_from_csv(file_path):
         for row in reader:
             category = row['Kategorie']
             icon = row['Icon'].strip() if row['Icon'] else None
-            value = row['Wert'].strip() if 'Wert' in row and row['Wert'] else None
+            value = row['Wert'].strip(
+            ) if 'Wert' in row and row['Wert'] else None
             if category not in data:
                 data[category] = []
             data[category].append({
@@ -53,7 +54,8 @@ def create_pdf(filename, data, icons_folder):
     column_width = (width - 2 * margin) / 2
 
     c.setFont("Helvetica-Bold", 14)
-    c.drawString(margin, height - margin - 20, "Aaron Feldmann Skill Auflistung")
+    c.drawString(margin, height - margin - 20,
+                 "Aaron Feldmann Skill Auflistung")
     c.line(margin, height - margin - 10, width - margin, height - margin - 10)
 
     y_position_left -= 30
@@ -61,8 +63,10 @@ def create_pdf(filename, data, icons_folder):
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
-    left_categories = ["Hardware Kentnisse", "Arbeitsabläufe", "Hardware Reparatur"]
-    right_categories = ["Software Systeme", "Programiersprachen", "Software Kentnisse"]
+    left_categories = ["Hardware Kentnisse",
+                       "Arbeitsabläufe", "Hardware Reparatur"]
+    right_categories = ["Software Systeme",
+                        "Programiersprachen", "Software Kentnisse"]
 
     for category, items in data.items():
         if category in left_categories:
@@ -82,9 +86,11 @@ def create_pdf(filename, data, icons_folder):
 
         for item in items:
             name = item["Name"]
-            icon_path = os.path.join(icons_folder, item["Icon"]) if item["Icon"] else None
+            icon_path = os.path.join(
+                icons_folder, item["Icon"]) if item["Icon"] else None
             color = get_color_for_value(item["Value"])
-            num_icons = int(item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
+            num_icons = int(
+                item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
 
             c.setFillColor(HexColor("#000000"))
             c.setFont("Helvetica", 10)
@@ -151,4 +157,3 @@ output_pdf_path = os.path.join(script_dir, "skills_colored_final.pdf")
 
 data = read_data_from_csv(csv_file_path)
 create_pdf(output_pdf_path, data, icons_folder)
-
