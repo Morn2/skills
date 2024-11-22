@@ -80,7 +80,7 @@ def create_pdf(filename, data, icons_folder):
             continue
 
         y_position -= 10
-        c.setFont("Helvetica-Bold", 12)
+        c.setFont("Helvetica-Bold", 15)
         c.setFillColor(HexColor("#000000"))
         c.drawString(x_position, y_position, category)
         y_position -= 5
@@ -94,10 +94,10 @@ def create_pdf(filename, data, icons_folder):
                 item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
 
             c.setFillColor(HexColor("#000000"))
-            c.setFont("Helvetica", 10)
+            c.setFont("Helvetica", 12)
             c.drawString(x_position + 5, y_position - 10, name)
 
-            text_width = c.stringWidth(name, "Helvetica", 10)
+            text_width = c.stringWidth(name, "Helvetica", 12)
 
             if icon_path and os.path.isfile(icon_path):
                 try:
