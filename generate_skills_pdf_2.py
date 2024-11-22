@@ -4,6 +4,8 @@ from PIL import Image
 from reportlab.lib.colors import HexColor
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from reportlab.platypus import Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
 
 
 def set_icon_parameters(height=20, width=20, y_offset=0):
@@ -162,9 +164,9 @@ def create_pdf(filename, data, icons_folder):
     print(f"Pfad zum Logo: {logo_path}")  # Debug-Ausgabe
     if not os.path.isfile(logo_path):
         print("Das Python-Logo wurde nicht gefunden!")
-    logo_width = 200  # Breite des Logos
-    logo_height = 200  # Höhe des Logos
-    logo_x = width - margin - logo_width - 25  # X-Position (rechtsbündig)
+    logo_width = 150  # Breite des Logos
+    logo_height = 150  # Höhe des Logos
+    logo_x = width - margin - logo_width - 50  # X-Position (rechtsbündig)
     logo_y = bottom_margin - logo_height - -120  # Y-Position
 
     # Logo zeichnen (falls vorhanden)
@@ -180,23 +182,29 @@ def create_pdf(filename, data, icons_folder):
             )
         except Exception as e:
             print(f"Fehler beim Laden des Python-Logos: {e}")
-            print(f"Logo-Pfad: {logo_path}")
 
-        # Beschreibungstext hinzufügen
-        text_x = logo_x  # Text beginnt unter dem Logo
-        text_y = logo_y - 20  # Text direkt unter dem Logo
-        c.setFont("Helvetica", 10)
-        c.setFillColor(HexColor("#000000"))
-        c.drawString(
-            text_x,
-            text_y,
-            "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.",
-        )
-    c.drawString(
-        text_x,
-        text_y - 12,
-        "Den Source Code finden Sie auf der Rückseite.",
+    # Beschreibungstext hinzufügen
+    text = (
+        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript "
+        "erstellt. Den Source Code finden Sie auf der Rückseite."
     )
+    text_x = logo_x  # Gleiche X-Position wie das Logo
+    text_y = logo_y = 15  # Y-Position unterhalb des Logos
+    text_width = logo_width  # Breite des Textblocks entspricht der Breite des Logos
+
+    # Textstil festlegen
+    styles = getSampleStyleSheet()
+    style = styles["Normal"]
+    style.fontName = "Helvetica"
+    style.fontSize = 10
+    style.leading = 12  # Zeilenhöhe
+    style.textColor = HexColor("#000000")
+
+    # Paragraph erstellen und zeichnen
+    paragraph = Paragraph(text, style)
+    paragraph.wrapOn(c, text_width, 100)  # Breite und maximale Höhe
+    paragraph.drawOn(c, text_x, text_y)
+
     c.save()
 
 
