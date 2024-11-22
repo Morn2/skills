@@ -10,6 +10,8 @@ from reportlab.lib.styles import getSampleStyleSheet
 def set_icon_parameters(height=20, width=20, y_offset=0):
     return {"height": height, "width": width, "y_offset": y_offset}
 
+#  Farben für die jeweiligen Werte festlegen
+
 
 def get_color_for_value(value):
     if value == "1":
@@ -24,6 +26,8 @@ def get_color_for_value(value):
         return HexColor("#2E8B57")  # Dunkelgrün
     else:
         return HexColor("#FFFFFF")  # Standard: Weiß
+
+ # Liest CSV Datei dessen Header Name, Icon, Wert und Iconname ist.
 
 
 def read_data_from_csv(file_path):
@@ -54,17 +58,20 @@ def create_pdf(filename, data, icons_folder):
     y_position_right = height - margin - 1
     column_width = (width - 2 * margin) / 2
 
+    # Überschrift und Linie
     c.setFont("Helvetica-Bold", 14)
     c.drawString(margin, height - -15 - margin,
                  "Aaron Feldmann Skill Auflistung")
     c.line(margin, height - margin - -10,
            width - margin, height - margin - -10)
 
+    # Positionen für die Kategorien festlegen
     y_position_left -= 1
     y_position_right -= 1
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
+    # Katerogien links und rechts festlegen
     left_categories = ["Hardware Kentnisse",
                        "Arbeitsabläufe", "Hardware Reparatur"]
     right_categories = ["Software Systeme",
@@ -80,6 +87,7 @@ def create_pdf(filename, data, icons_folder):
         else:
             continue
 
+        # Text für Name festlegen
         y_position -= 10
         c.setFont("Helvetica-Bold", 15)
         c.setFillColor(HexColor("#000000"))
@@ -133,6 +141,7 @@ def create_pdf(filename, data, icons_folder):
         elif category in right_categories:
             y_position_right = y_position
 
+    # Erklärung hinzufügen
     explanation_x = margin + column_width
     explanation_y = 300
 
@@ -160,7 +169,6 @@ def create_pdf(filename, data, icons_folder):
     # Python-Logo und Beschreibung hinzufügen
     # Pfad zum Python-Logo
     logo_path = os.path.join(icons_folder, "pl.png")
-    print(f"Pfad zum Logo: {logo_path}")  # Debug-Ausgabe
     if not os.path.isfile(logo_path):
         print("Das Python-Logo wurde nicht gefunden!")
     logo_width = 150  # Breite des Logos
