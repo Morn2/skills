@@ -54,12 +54,12 @@ def create_pdf(filename, data, icons_folder):
     column_width = (width - 2 * margin) / 2
 
     c.setFont("Helvetica-Bold", 14)
-    c.drawString(margin, height - margin,
+    c.drawString(margin, height - -10 - margin,
                  "Aaron Feldmann Skill Auflistung")
     c.line(margin, height - margin - 10, width - margin, height - margin - 10)
 
-    y_position_left -= 5
-    y_position_right -= 5
+    y_position_left -= -30
+    y_position_right -= -30
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
