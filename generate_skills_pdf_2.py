@@ -111,16 +111,26 @@ def create_pdf(filename, data, icons_folder):
             c.setFont("Helvetica", 10)
             c.drawString(x_position + 5, y_position - 10, name)
 
+            # Text zeichnen
+            c.setFillColor(HexColor("#000000"))  # Textfarbe schwarz
+            c.setFont("Helvetica", 10)
+            c.drawString(x_position + 5, y_position - 10, name)
+
+            # Breite des Textes berechnen
+            text_width = c.stringWidth(name, "Helvetica", 10)
+
             # Icons zeichnen (eingefärbt)
             if icon_path and os.path.isfile(icon_path):
                 try:
                     for i in range(num_icons):
-                        icon_x_position = x_position + 100 + \
-                            i * (icon_params["width"] + 5)
+                        icon_x_position = x_position + 5 + \
+                            text_width + i * (icon_params["width"] + 5)
                         c.setFillColor(color)  # Icon-Farbe
                         c.rect(icon_x_position, y_position - 15,
-                               icon_params["width"], icon_params["height"], stroke=0, fill=1)
-                        c.drawImage(icon_path, icon_x_position, y_position - 15,
+                               icon_params["width"], icon_params["height"],
+                               stroke=0, fill=1)
+                        c.drawImage(icon_path,
+                                    icon_x_position, y_position - 15,
                                     width=icon_params["width"],
                                     height=icon_params["height"], mask='auto')
                 except Exception as e:
