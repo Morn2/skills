@@ -136,7 +136,8 @@ def create_pdf(filename, data, icons_folder):
 
         # Erklärung unten rechts in der rechten Spalte
         explanation_x = margin + column_width  # Start der rechten Spalte
-        explanation_y = bottom_margin  # Abstand zum unteren Rand
+        explanation_y = bottom_margin
+        explanation_y = 300  # Abstand zum unteren Rand
         c.setFont("Helvetica-Bold", 12)
         c.drawString(explanation_x, explanation_y + 20, "Erklärung")
 
