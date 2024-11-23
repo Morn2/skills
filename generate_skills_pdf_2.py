@@ -99,8 +99,11 @@ def create_pdf(filename, data, icons_folder):
             icon_path = os.path.join(
                 icons_folder, item["Icon"]) if item["Icon"] else None
             color = get_color_for_value(item["Value"])
-            num_icons = int(
-                item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
+            num_icons = (
+                int(item["Value"])
+                if item["Value"] and item["Value"].isdigit()
+                else 1
+            )
 
             c.setFillColor(HexColor("#000000"))
             c.setFont("Helvetica", 12)
@@ -197,7 +200,7 @@ def create_pdf(filename, data, icons_folder):
     )
     text_x = logo_x  # Gleiche X-Position wie das Logo
     text_y = logo_y = 15  # Y-Position unterhalb des Logos
-    text_width = logo_width  # Breite des Textblocks entspricht der Breite des Logos
+    text_width = logo_width  # Breite der Beschreibung = Logo Breite
 
     # Textstil festlegen
     styles = getSampleStyleSheet()
@@ -210,7 +213,7 @@ def create_pdf(filename, data, icons_folder):
     # Paragraph erstellen und zeichnen
     paragraph = Paragraph(text, style)
     paragraph.wrapOn(c, text_width, 100)  # Breite und maximale Höhe
-    paragraph.drawOn(c, text_x, text_y)
+    paragraph.drawOn(c, text_x, text_y)  # Texteinschub horizontal und vertikal
 
     c.save()
 
