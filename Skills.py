@@ -55,27 +55,22 @@ def get_color_for_value(value):
         return HexColor("#FFFFFF")  # Standard: Weiß
 
 
-def create_pdf(filename, data, icons_folder):
+def create_pdf(filename, data, icons_folder, code_file):
     """
-    Erstellt ein PDF mit den Daten aus der CSV-Datei.
+    Erstellt ein PDF mit den Daten aus der CSV-Datei, Icons und Python-Code.
     """
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
     margin = 50
-    bottom_margin = 100
-    column_width = (width - 2 * margin) / 2
 
-    # Überschrift und Linie
+    # Überschrift und Hauptinhalt
     add_header(c, width, height, margin)
+    draw_categories(c, data, icons_folder, width, height,
+                    margin, (width - 2 * margin) / 2)
+    add_explanation(c, data, margin, (width - 2 * margin) / 2, 100)
 
-    # Kategorien zeichnen
-    draw_categories(c, data, icons_folder, height, margin, column_width)
-
-    # Erklärung hinzufügen
-    add_explanation(c, data, margin, column_width, bottom_margin)
-
-    # Python-Logo und Beschreibung hinzufügen
-    add_logo_and_description(c, icons_folder, width, margin, bottom_margin)
+    # Python-Code hinzufügen
+    add_code_with_columns(c, code_file, width, height, margin, num_columns=4)
 
     c.save()
 
@@ -92,7 +87,7 @@ def add_header(c, width, height, margin):
 
 
 def draw_categories(
-    c, data, icons_folder, height, margin, column_width
+    c, data, icons_folder, width, height, margin, column_width
 ):
     """
     Zeichnet die Kategorien, deren Namen und Icons in das PDF.
@@ -254,6 +249,43 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     paragraph.drawOn(c, logo_x - -5, logo_y - 60)  # Abstand Text - Logo
 
 
+def add_code_with_columns(c, code_file, width, height, margin, num_columns=3):
+    """
+    Fügt den Python-Code auf einer neuen Seite hinzu,
+    verteilt auf mehrere Spalten.
+    """
+    font_size = 8  # Schriftgröße für den Code
+    line_spacing = 2  # Zeilenabstand
+    column_width = (width - 2 * margin) / num_columns  # Breite einer Spalte
+    column_margin = 10  # Abstand zwischen Spalten
+
+    c.showPage()  # Neue Seite für den Code starten
+    c.setFont("Courier", font_size)
+    y_position = height - margin  # Startposition für die erste Zeile
+    column_index = 0  # Spalte 0 beginnt
+
+    with open(code_file, "r") as file:
+        for line in file:
+            # Berechne X-Position der aktuellen Spalte
+            x_position = margin + column_index * (column_width + column_margin)
+
+            # Wechsle zu nächster Spalte wenn kein Platz zu finden ist.
+            if y_position < margin:
+                column_index += 1
+                y_position = height - margin  # Startposition der neuen Spalte
+
+                # Wechsle zu nächster Seite wenn Spalte voll ist.
+                if column_index >= num_columns:
+                    c.showPage()
+                    c.setFont("Courier", font_size)
+                    column_index = 0
+                    y_position = height - margin
+
+            # Füge die aktuelle Zeile an der berechneten Position hinzu
+            c.drawString(x_position, y_position, line.rstrip())
+            y_position -= font_size + line_spacing  # Nächste Zeile
+
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file_path = os.path.join(script_dir, "daten.csv")
 icons_folder = os.path.join(script_dir, "Icons")
@@ -261,4 +293,5 @@ output_pdf_path = os.path.join(script_dir,
                                "Skills Übersicht Aaron Feldmann.pdf")
 
 data = read_data_from_csv(csv_file_path)
-create_pdf(output_pdf_path, data, icons_folder)
+code_file_path = os.path.join(script_dir, "Skills.py")
+create_pdf(output_pdf_path, data, icons_folder, code_file_path)
