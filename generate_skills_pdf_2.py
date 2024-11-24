@@ -42,17 +42,17 @@ def get_color_for_value(value):
     Gibt die entsprechende Farbe für einen numerischen Wert zurück.
     """
     if value == "1":
-        return HexColor("#FF9999")
+        return HexColor("#ADD8E6")  # Hellblau
     elif value == "2":
-        return HexColor("#FFCC99")
+        return HexColor("#87CEEB")  # Mittelblau
     elif value == "3":
-        return HexColor("#FFFF99")
+        return HexColor("#4682B4")  # Dunkelblau
     elif value == "4":
-        return HexColor("#CCFF99")
+        return HexColor("#5F9EA0")  # Blaugrün
     elif value == "5":
-        return HexColor("#99CC99")
+        return HexColor("#2E8B57")  # Dunkelgrün
     else:
-        return HexColor("#FFFFFF")
+        return HexColor("#FFFFFF")  # Standard: Weiß
 
 
 def create_pdf(filename, data, icons_folder):
@@ -219,7 +219,7 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     logo_width = 150
     logo_height = 150
     logo_x = width - margin - logo_width - 50
-    logo_y = bottom_margin - logo_height - 120
+    logo_y = bottom_margin - logo_height - -120
 
     # Logo hinzufügen
     if os.path.isfile(logo_path):
@@ -234,8 +234,10 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
             )
         except Exception as e:
             print(f"Fehler beim Laden des Python-Logos: {e}")
+    else:
+        print("Das Python-Logo wurde nicht gefunden!")
 
-    # Beschreibungstext
+    # Beschreibungstext unter Python Logo
     text = (
         "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript "
         "erstellt. Den Source Code finden Sie auf der Rückseite."
@@ -249,7 +251,7 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
 
     paragraph = Paragraph(text, style)
     paragraph.wrapOn(c, logo_width, 100)
-    paragraph.drawOn(c, logo_x, logo_y - 20)
+    paragraph.drawOn(c, logo_x, logo_y)  # Texteinschub horizontal und vertikal
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
