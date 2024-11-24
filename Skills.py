@@ -80,6 +80,24 @@ def create_pdf(filename, data, icons_folder):
     c.save()
 
 
+def create_pdf_with_code(filename, data, icons_folder, code_file):
+    """
+    Erstellt ein PDF mit den Skills und dem Python-Code auf der nächsten Seite.
+    """
+    c = canvas.Canvas(filename, pagesize=A4)
+    width, height = A4
+    margin = 50
+
+    add_header(c, width, height, margin)
+    draw_categories(c, data, icons_folder, width, height,
+                    margin, (width - 2 * margin) / 2)
+    add_explanation(c, data, margin, (width - 2 * margin) / 2, 100)
+    add_logo_and_description(c, icons_folder, width, margin, 100)
+    add_code_to_pdf(c, code_file, width, height, margin)
+
+    c.save()
+
+
 def add_header(c, width, height, margin):
     """
     Fügt die Überschrift und die Trennlinie zum PDF hinzu.
@@ -209,6 +227,27 @@ def add_explanation(c, data, margin, column_width, bottom_margin):
         c.setFillColor(HexColor("#000000"))
         c.drawString(explanation_x + 5, explanation_y + 3, name)
         explanation_y -= 20
+
+
+def add_code_to_pdf(c, code_file, height, margin):
+    """
+    Fügt den Python-Code auf einer neuen Seite im PDF hinzu.
+    """
+    font_size = 10  # Schriftgröße für den Code
+    line_spacing = 3  # Zeilenabstand
+
+    c.showPage()  # Neue Seite starten
+    c.setFont("Courier", font_size)
+    y_position = height - margin
+
+    with open(code_file, "r") as file:
+        for line in file:
+            if y_position < margin:  # Bei Platzmangel neue Seite
+                c.showPage()
+                c.setFont("Courier", font_size)
+                y_position = height - margin
+            c.drawString(margin, y_position, line.rstrip())
+            y_position -= font_size + line_spacing
 
 
 def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
