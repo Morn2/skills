@@ -250,8 +250,8 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     style.textColor = HexColor("#000000")
 
     paragraph = Paragraph(text, style)
-    paragraph.wrapOn(c, logo_width, 100)
-    paragraph.drawOn(c, logo_x, logo_y)  # Texteinschub horizontal und vertikal
+    paragraph.wrapOn(c, logo_width, -10)
+    paragraph.drawOn(c, logo_x - -5, logo_y - 60)  # Abstand Text - Logo
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
