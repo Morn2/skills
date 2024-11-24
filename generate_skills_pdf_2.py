@@ -27,7 +27,7 @@ def get_color_for_value(value):
     else:
         return HexColor("#FFFFFF")  # Standard: Weiß
 
- # Liest CSV Datei dessen Header Name, Icon, Wert und Iconname ist.
+# Liest CSV Datei dessen Header Name, Icon, Wert und Iconname ist.
 
 
 def read_data_from_csv(file_path):
@@ -46,7 +46,10 @@ def read_data_from_csv(file_path):
                 "Icon": icon,
                 "Value": value
             })
+
     return data
+
+# Erstellt PDF Datei mit den Daten aus der CSV Datei
 
 
 def create_pdf(filename, data, icons_folder):
