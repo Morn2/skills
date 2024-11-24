@@ -5,6 +5,14 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from reportlab.platypus import Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
+from reportlab.lib.pagesizes import A4
+from reportlab.pdfgen import canvas
 
 
 def read_data_from_csv(file_path):
@@ -252,6 +260,31 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     paragraph = Paragraph(text, style)
     paragraph.wrapOn(c, logo_width, -10)
     paragraph.drawOn(c, logo_x - -5, logo_y - 60)  # Abstand Text - Logo
+
+
+def add_code_to_pdf(pdf_path, code):
+    # Create a PDF canvas
+    c = canvas.Canvas(pdf_path, pagesize=A4)
+    width, height = A4
+
+    # Syntax highlighting using pygments
+    formatter = HtmlFormatter(full=True, style='colorful')
+    highlighted_code = highlight(code, PythonLexer(), formatter)
+
+    # Parse highlighted code and add to PDF
+    styles = getSampleStyleSheet()
+    code_style = styles['Code']
+    code_paragraph = Paragraph(highlighted_code, code_style)
+    code_paragraph.wrapOn(c, width - 100, height - 100)
+    code_paragraph.drawOn(c, 50, height - 150)
+
+    # Save the PDF
+    c.save()
+
+
+code = """def example_function():
+    print("Hello, World!")"""
+add_code_to_pdf("code_example.pdf", code)
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
