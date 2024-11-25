@@ -91,7 +91,7 @@ def add_header(c, width, height, margin, user_name):
     """
     Fügt die Überschrift und die Trennline ein.
     """
-    c.setFont("Helvetica-Bold", 14)
+    c.setFont("Helvetica-Bold", 16)
     c.drawString(margin, height - margin - -15,
                  f"{user_name}'s Skill Übersicht")
     c.line(margin, height - margin - -10,
@@ -233,7 +233,7 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     qr_height = 100
 
     # Startpositionen für das Logo und den QR-Code
-    logo_x = width - margin - qr_width - logo_width - 20  # Platz für QR-Code rechts
+    logo_x = width - margin - qr_width - logo_width - 20  # Platz QR rechts
     logo_y = bottom_margin + 10  # Abstand zum unteren Rand
     qr_x = logo_x + logo_width + 10  # Rechts neben dem Logo
     qr_y = logo_y  # Gleiche Höhe wie das Logo
@@ -269,7 +269,10 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     # Beschreibungstext hinzufügen
     text = (
         "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript "
-        "erstellt. Scannen Sie den QR-Code, um den Source Code auf GitHub zu sehen."
+        "erstellt. Scannen Sie den QR-Code, um direkt zu "
+        "meinem GitHub-Repository unter "
+        "www.github.com/Morn2/Skills zu gelangen. "
+        "Skills.py ist die Datei des Sourcecodes. "
     )
     styles = getSampleStyleSheet()
     style = styles["Normal"]
@@ -280,7 +283,7 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
 
     # Text unter Logo + QR-Code
     text_x = logo_x  # Gleiche Startposition wie das Logo
-    text_y = logo_y - 50  # Unter dem Logo und QR-Code
+    text_y = logo_y - 80  # Unter dem Logo und QR-Code
     text_width = logo_width + qr_width + 10  # Breite von Logo + QR-Code
 
     paragraph = Paragraph(text, style)
