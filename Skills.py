@@ -220,16 +220,17 @@ def add_explanation(c, data, margin, column_width, bottom_margin):
 
 def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     """
-    Fügt das Python-Logo und den QR-Code zum PDF hinzu, sowie eine Beschreibung.
+    Fügt das Python-Logo, den QR-Code und die Beschreibung zum PDF hinzu.
     """
     # Pfad zum Python-Logo und QR-Code
     logo_path = os.path.join(icons_folder, "pl.png")
     qr_code_path = os.path.join(icons_folder, "qr_code.png")
 
+    # Dimensionen des Logos
     logo_width = 150
     logo_height = 150
-    logo_x = width - margin - logo_width - 50
-    logo_y = bottom_margin - logo_height - 120
+    logo_x = width - margin - logo_width - 50  # Rechtsbündig
+    logo_y = bottom_margin - logo_height - 120  # Höhe des Logos
 
     # Python-Logo hinzufügen
     if os.path.isfile(logo_path):
@@ -245,12 +246,13 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
         except Exception as e:
             print(f"Fehler beim Laden des Python-Logos: {e}")
 
-    # QR-Code hinzufügen
+    # Dimensionen des QR-Codes
     qr_width = 100
     qr_height = 100
-    qr_x = logo_x + logo_width + 20  # Rechts vom Logo
-    qr_y = logo_y
+    qr_x = logo_x + (logo_width - qr_width) / 2  # Zentriert unter dem Logo
+    qr_y = logo_y - qr_height - 20  # Abstand vom Logo nach unten
 
+    # QR-Code hinzufügen
     if os.path.isfile(qr_code_path):
         try:
             c.drawImage(
@@ -267,21 +269,28 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     # Beschreibungstext hinzufügen
     text = (
         "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript "
-        "erstellt. Scannen Sie den QR-Code, um den Source Code zu sehen."
-        "Der QR Code führt zu www.github.com/Morn2/Skills"
+        "erstellt. Scannen Sie den QR-Code,"
+        "er führt zu https://github.com/Morn2/skills"
+        "wo der Quellcode zu finden ist."
     )
     styles = getSampleStyleSheet()
     style = styles["Normal"]
     style.fontName = "Helvetica"
     style.fontSize = 10
-    style.leading = 12
+    style.leading = 12  # Zeilenhöhe
     style.textColor = HexColor("#000000")
 
+    # Text unter dem QR-Code zentrieren
+    text_width = qr_width + 20
+    text_x = qr_x - 10  # Etwas weiter links für zentrierte Darstellung
+    text_y = qr_y - 20  # Unter dem QR-Code
+
     paragraph = Paragraph(text, style)
-    paragraph.wrapOn(c, logo_width + qr_width + 20, 100)
-    paragraph.drawOn(c, logo_x, logo_y - 30)
+    paragraph.wrapOn(c, text_width, 50)  # Breite und Höhe des Textblocks
+    paragraph.drawOn(c, text_x, text_y)
 
 
+# Pfade und Dateinamen
 script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file_path = os.path.join(script_dir, "daten.csv")
 icons_folder = os.path.join(script_dir, "Icons")
