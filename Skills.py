@@ -220,15 +220,18 @@ def add_explanation(c, data, margin, column_width, bottom_margin):
 
 def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     """
-    Fügt das Python-Logo und den Beschreibungstext zum PDF hinzu.
+    Fügt das Python-Logo und den QR-Code zum PDF hinzu, sowie eine Beschreibung.
     """
+    # Pfad zum Python-Logo und QR-Code
     logo_path = os.path.join(icons_folder, "pl.png")
+    qr_code_path = os.path.join(icons_folder, "qr_code.png")
+
     logo_width = 150
     logo_height = 150
     logo_x = width - margin - logo_width - 50
-    logo_y = bottom_margin - logo_height - -120
+    logo_y = bottom_margin - logo_height - 120
 
-    # Logo hinzufügen
+    # Python-Logo hinzufügen
     if os.path.isfile(logo_path):
         try:
             c.drawImage(
@@ -241,13 +244,31 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
             )
         except Exception as e:
             print(f"Fehler beim Laden des Python-Logos: {e}")
-    else:
-        print("Das Python-Logo wurde nicht gefunden!")
 
-    # Beschreibungstext unter Python Logo
+    # QR-Code hinzufügen
+    qr_width = 100
+    qr_height = 100
+    qr_x = logo_x + logo_width + 20  # Rechts vom Logo
+    qr_y = logo_y
+
+    if os.path.isfile(qr_code_path):
+        try:
+            c.drawImage(
+                qr_code_path,
+                qr_x,
+                qr_y,
+                width=qr_width,
+                height=qr_height,
+                mask="auto",
+            )
+        except Exception as e:
+            print(f"Fehler beim Laden des QR-Codes: {e}")
+
+    # Beschreibungstext hinzufügen
     text = (
         "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript "
-        "erstellt. Den Source Code finden Sie auf der Rückseite."
+        "erstellt. Scannen Sie den QR-Code, um den Source Code zu sehen."
+        "Der QR Code führt zu www.github.com/Morn2/Skills"
     )
     styles = getSampleStyleSheet()
     style = styles["Normal"]
@@ -257,8 +278,8 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     style.textColor = HexColor("#000000")
 
     paragraph = Paragraph(text, style)
-    paragraph.wrapOn(c, logo_width, -10)
-    paragraph.drawOn(c, logo_x - -5, logo_y - 60)  # Abstand Text - Logo
+    paragraph.wrapOn(c, logo_width + qr_width + 20, 100)
+    paragraph.drawOn(c, logo_x, logo_y - 30)
 
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
