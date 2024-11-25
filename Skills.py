@@ -7,6 +7,13 @@ from reportlab.platypus import Paragraph
 from reportlab.lib.styles import getSampleStyleSheet
 
 
+def get_user_name():
+    """
+    Fragt den Namen des Benutzers ab und gibt ihn zurück.
+    """
+    return input("Bitte geben Sie Ihren Namen ein: ")
+
+
 def read_data_from_csv(file_path):
     """
     Liest die Daten aus einer CSV-Datei und gibt sie als Dictionary zurück.
@@ -55,9 +62,9 @@ def get_color_for_value(value):
         return HexColor("#FFFFFF")  # Standard: Weiß
 
 
-def create_pdf(filename, data, icons_folder):
+def create_pdf(filename, data, icons_folder, user_name):
     """
-    Erstellt ein PDF mit den Daten aus der CSV-Datei.
+    Erstellt ein PDF mit den Daten aus der CSV-Datei, Icons und Benutzername.
     """
     c = canvas.Canvas(filename, pagesize=A4)
     width, height = A4
@@ -66,7 +73,7 @@ def create_pdf(filename, data, icons_folder):
     column_width = (width - 2 * margin) / 2
 
     # Überschrift und Linie
-    add_header(c, width, height, margin)
+    add_header(c, width, height, margin, user_name)
 
     # Kategorien zeichnen
     draw_categories(c, data, icons_folder, height, margin, column_width)
@@ -80,13 +87,13 @@ def create_pdf(filename, data, icons_folder):
     c.save()
 
 
-def add_header(c, width, height, margin):
+def add_header(c, width, height, margin, user_name):
     """
-    Fügt die Überschrift und die Trennlinie zum PDF hinzu.
+    Fügt die Überschrift und die Trennline ein.
     """
     c.setFont("Helvetica-Bold", 14)
     c.drawString(margin, height - margin - -15,
-                 "Aaron Feldmann Skill Auflistung")
+                 f"{user_name}'s Skill Übersicht")
     c.line(margin, height - margin - -10,
            width - margin, height - margin - -10)
 
@@ -260,5 +267,11 @@ icons_folder = os.path.join(script_dir, "Icons")
 output_pdf_path = os.path.join(script_dir,
                                "Skills Übersicht.pdf")
 
+# CSV Lesen
 data = read_data_from_csv(csv_file_path)
-create_pdf(output_pdf_path, data, icons_folder)
+
+# Benutzername abfragen
+user_name = get_user_name()
+
+# PDF erstellen
+create_pdf(output_pdf_path, data, icons_folder, user_name)
