@@ -258,7 +258,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 csv_file_path = os.path.join(script_dir, "daten.csv")
 icons_folder = os.path.join(script_dir, "Icons")
 output_pdf_path = os.path.join(script_dir,
-                               "Skills Übersicht Aaron Feldmann.pdf")
+                               "Skills Übersicht.pdf")
 
 data = read_data_from_csv(csv_file_path)
 create_pdf(output_pdf_path, data, icons_folder)
