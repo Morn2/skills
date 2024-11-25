@@ -227,10 +227,16 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     qr_code_path = os.path.join(icons_folder, "qr_code.png")
 
     # Dimensionen des Logos
-    logo_width = 150
-    logo_height = 150
-    logo_x = width - margin - logo_width - 50  # Rechtsbündig
-    logo_y = bottom_margin - logo_height - 120  # Höhe des Logos
+    logo_width = 100
+    logo_height = 100
+    qr_width = 100
+    qr_height = 100
+
+    # Startpositionen für das Logo und den QR-Code
+    logo_x = width - margin - qr_width - logo_width - 20  # Platz für QR-Code rechts
+    logo_y = bottom_margin + 10  # Abstand zum unteren Rand
+    qr_x = logo_x + logo_width + 10  # Rechts neben dem Logo
+    qr_y = logo_y  # Gleiche Höhe wie das Logo
 
     # Python-Logo hinzufügen
     if os.path.isfile(logo_path):
@@ -245,12 +251,6 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
             )
         except Exception as e:
             print(f"Fehler beim Laden des Python-Logos: {e}")
-
-    # Dimensionen des QR-Codes
-    qr_width = 100
-    qr_height = 100
-    qr_x = logo_x + (logo_width - qr_width) / 2  # Zentriert unter dem Logo
-    qr_y = logo_y - qr_height - 20  # Abstand vom Logo nach unten
 
     # QR-Code hinzufügen
     if os.path.isfile(qr_code_path):
@@ -269,24 +269,23 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     # Beschreibungstext hinzufügen
     text = (
         "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript "
-        "erstellt. Scannen Sie den QR-Code,"
-        "er führt zu https://github.com/Morn2/skills"
-        "wo der Quellcode zu finden ist."
+        "erstellt. Scannen Sie den QR-Code, um den Source Code auf GitHub zu sehen."
     )
     styles = getSampleStyleSheet()
     style = styles["Normal"]
     style.fontName = "Helvetica"
-    style.fontSize = 10
+    style.fontSize = 12
     style.leading = 12  # Zeilenhöhe
     style.textColor = HexColor("#000000")
 
-    # Text unter dem QR-Code zentrieren
-    text_width = qr_width + 20
-    text_x = qr_x - 10  # Etwas weiter links für zentrierte Darstellung
-    text_y = qr_y - 20  # Unter dem QR-Code
+    # Text unter Logo + QR-Code
+    text_x = logo_x  # Gleiche Startposition wie das Logo
+    text_y = logo_y - 50  # Unter dem Logo und QR-Code
+    text_width = logo_width + qr_width + 10  # Breite von Logo + QR-Code
 
     paragraph = Paragraph(text, style)
-    paragraph.wrapOn(c, text_width, 50)  # Breite und Höhe des Textblocks
+    # Breite und maximale Höhe des Textblocks
+    paragraph.wrapOn(c, text_width, 50)
     paragraph.drawOn(c, text_x, text_y)
 
 
