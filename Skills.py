@@ -111,7 +111,7 @@ def draw_categories(
     left_categories = ["Hardware-Kenntnisse",
                        "Arbeitsabläufe", "Hardware-Reparatur"]
     right_categories = ["Softwaresysteme",
-                        "Programiersprachen", "Software-Kenntnisse"]
+                        "Software-Kenntnisse"]
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
