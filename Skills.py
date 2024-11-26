@@ -93,7 +93,7 @@ def add_header(c, width, height, margin, user_name):
     """
     c.setFont("Helvetica-Bold", 16)
     c.drawString(margin, height - margin - -15,
-                 f"{user_name}'s Skill Übersicht")
+                 f"{user_name} Skill-Übersicht")
     c.line(margin, height - margin - -10,
            width - margin, height - margin - -10)
 
@@ -108,10 +108,10 @@ def draw_categories(
     y_position_right = height - margin - 1
 
     # Kategorien links und rechts definieren
-    left_categories = ["Hardware Kentnisse",
-                       "Arbeitsabläufe", "Hardware Reparatur"]
-    right_categories = ["Software Systeme",
-                        "Programiersprachen", "Software Kentnisse"]
+    left_categories = ["Hardware-Kenntnisse",
+                       "Arbeitsabläufe", "Hardware-Reparatur"]
+    right_categories = ["Softwaresysteme",
+                        "Programiersprachen", "Software-Kenntnisse"]
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 

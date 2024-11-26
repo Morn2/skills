@@ -1,60 +1,60 @@
 Name,Wert,Kategorie,Icon
-Löten,4,Hardware Reparatur,Löten.png
-SMD Löten,3,Hardware Reparatur,SMD Löten.png
-Feines Handwerk,4,Hardware Reparatur,Feines Handwerk.png
-Exakt,5,Hardware Reparatur,Exakt.png
-Kabelbau,4,Hardware Reparatur,Kabelbau.png
-Manuals verstehen,5,Hardware Reparatur,Lesen von Schema und Service Manuals.png
-Level 1 Reparaturen,5,Hardware Reparatur,Level 1 Reparaturen.png
-Level 2 Reparaturen ,5,Hardware Reparatur,Level 2 Reparaturen.png
-Level 3 Reparaturen,4,Hardware Reparatur,Level 3 Reparaturen.png
-Manjaro/Arch Linux,4,Software Systeme,Manjaro v Arch Linux.png
-Debian/Ubuntu/Kali/Fedora Linux,3,Software Systeme,Debian v Ubuntu v Kali v Fedora.png
-Apple IOS,4,Software Systeme,Apple IOS.png
-Mac OS und Mac OS ARM,4,Software Systeme,Mac OS und Mac OS ARM.png
-Apple iPad OS,4,Software Systeme,Apple iPad OS.png
-Android,4,Software Systeme,Android.png
-Manjaro ARM,4,Software Systeme,Manjaro ARM.png
-Windows ,3,Software Systeme,Windows.png
+Löten,4,Hardwarereparatur,Löten.png
+SMD Löten,3,Hardwarereparatur,SMD Löten.png
+Feines Handwerk,4,Hardwarereparatur,Feines Handwerk.png
+Exakt,5,Hardwarereparatur,Exakt.png
+Kabelbau,4,Hardwarereparatur,Kabelbau.png
+Manuals verstehen,5,Hardwarereparatur,Lesen von Schema und Service Manuals.png
+Level 1 Reparaturen,5,Hardwarereparatur,Level 1 Reparaturen.png
+Level 2 Reparaturen ,5,Hardwarereparatur,Level 2 Reparaturen.png
+Level 3 Reparaturen,4,Hardwarereparatur,Level 3 Reparaturen.png
+Manjaro/Arch Linux,4,Softwaresysteme,Manjaro v Arch Linux.png
+Debian/Ubuntu/Kali/Fedora Linux,3,Softwaresysteme,Debian v Ubuntu v Kali v Fedora.png
+Apple IOS,4,Softwaresysteme,Apple IOS.png
+Mac OS und Mac OS ARM,4,Softwaresysteme,Mac OS und Mac OS ARM.png
+Apple iPad OS,4,Softwaresysteme,Apple iPad OS.png
+Android,4,Softwaresysteme,Android.png
+Manjaro ARM,4,Softwaresysteme,Manjaro ARM.png
+Windows ,3,Softwaresysteme,Windows.png
 C++,1,Programierschsprachen,C++.png
-Python,2,Programierschsprachen,Python.png
-Lua,2,Programierschsprachen,Lua.png
-VBA,2,Programierschsprachen,VBA.png
+Python,3,Programierschsprachen,Python.png
+Lua,3,Programierschsprachen,Lua.png
+VBA,3,Programierschsprachen,VBA.png
 SQL,1,Programierschsprachen,SQL.png
 Javascript,1,Programierschsprachen,Javascript.png
 BASH,1,Programierschsprachen,BASH.png
 PHP,1,Programierschsprachen,PHP.png
-Microsoft Office,4,Software Kentnisse,Microsoft Office.png
-Google Dienste,4,Software Kentnisse,Google Dienste.png
-Jira/Confluence,3,Software Kentnisse,Confluence und Jira.png
-Citrix,2,Software Kentnisse,Citrix.png
-Umgang mit KI,4,Software Kentnisse,Umgang mit KI.png
-GitHub,3,Software Kentnisse,GitHub.png
-Asana,3,Software Kentnisse,Asana.png
-Notion,3,Software Kentnisse,Notion.png
-NeoVim,3,Software Kentnisse,NeoVim.png
-Terminal,4,Software Kentnisse,Terminal.png
-SAP,3,Software Kentnisse,SAP.png
-Bildbearbeitung,4,Software Kentnisse,Gimp.png
-MS Teams,1,Software Kentnisse,MS Teams.png
-Laptop ,5,Hardware Kentnisse,Laptop.png
-Tablet,4,Hardware Kentnisse,Tablet.png
-Smartphone,5,Hardware Kentnisse,Smartphone.png
-Desktop PC,5,Hardware Kentnisse,PC.png
-Display v TV,5,Hardware Kentnisse,Display v TV.png
-Hi-Fi Audio,4,Hardware Kentnisse,Hi-Fi Audio.png
-Video,4,Hardware Kentnisse,Video.png
-Eventtechnik,2,Hardware Kentnisse,Eventtechnik.png
-Projektor ,2,Hardware Kentnisse,Projektor.png
-iMac,5,Hardware Kentnisse,iMac.png
-iPod ,5,Hardware Kentnisse,iPod.png
-Kopfhörer,4,Hardware Kentnisse,Kopfhörer.png
-Lautsprecher,5,Hardware Kentnisse,Lautsprecher.png
-Car-Hi-Fi,3,Hardware Kentnisse,Car-Hi-Fi.png
-Smartwatch,3,Hardware Kentnisse,Smartwatch.png
-DVB Receiver,4,Hardware Kentnisse,DVB Receiver.png
-Elektrotrechnik Bauteile,3,Hardware Kentnisse,Elektrotechnik.png
-Drucker ,4,Hardware Kentnisse,Drucker.png
+Microsoft Office,4,Software-Kenntnisse,Microsoft Office.png
+Google Dienste,4,Software-Kenntnisse,Google Dienste.png
+Jira/Confluence,3,Software-Kenntnisse,Confluence und Jira.png
+Citrix,2,Software-Kenntnisse,Citrix.png
+Umgang mit KI,5,Software-Kenntnisse,Umgang mit KI.png
+GitHub,3,Software-Kenntnisse,GitHub.png
+Asana,3,Software-Kenntnisse,Asana.png
+Notion,3,Software-Kenntnisse,Notion.png
+NeoVim,3,Software-Kenntnisse,NeoVim.png
+Terminal,4,Software-Kenntnisse,Terminal.png
+SAP,3,Software-Kenntnisse,SAP.png
+Bildbearbeitung,4,Software-Kenntnisse,Gimp.png
+MS Teams,2,Software-Kenntnisse,MS Teams.png
+Laptop ,5,Hardware-Kenntnisse,Laptop.png
+Tablet,4,Hardware-Kenntnisse,Tablet.png
+Smartphone,5,Hardware-Kenntnisse,Smartphone.png
+Desktop PC,5,Hardware-Kenntnisse,PC.png
+TV,5,Hardware-Kenntnisse,Display v TV.png
+Hi-Fi Audio,4,Hardware-Kenntnisse,Hi-Fi Audio.png
+Video,4,Hardware-Kenntnisse,Video.png
+Eventtechnik,2,Hardware-Kenntnisse,Eventtechnik.png
+Projektor ,2,Hardware-Kenntnisse,Projektor.png
+iMac,5,Hardware-Kenntnisse,iMac.png
+iPod ,5,Hardware-Kenntnisse,iPod.png
+Kopfhörer,4,Hardware-Kenntnisse,Kopfhörer.png
+Lautsprecher,5,Hardware-Kenntnisse,Lautsprecher.png
+Car-Hi-Fi,3,Hardware-Kenntnisse,Car-Hi-Fi.png
+Smartwatch,3,Hardware-Kenntnisse,Smartwatch.png
+DVB Receiver,4,Hardware-Kenntnisse,DVB Receiver.png
+Elektrotrechnik Bauteile,3,Hardware-Kenntnisse,Elektrotechnik.png
+Drucker ,4,Hardware-Kenntnisse,Drucker.png
 Ersatzteilverwaltung,5,Arbeitsabläufe,Ersatzteilverwaltung.png
 Kostenvoranschläge erstellen,5,Arbeitsabläufe,Kostenvoranschlag.png
 Kundensupport,5,Arbeitsabläufe,Kundensupport.png
@@ -65,8 +65,8 @@ Fehlerbehebung,4,Arbeitsabläufe,Fehlerbehebung.png
 Refurbishment,5,Arbeitsabläufe,Refurbishment.png
 Automatisierung von Arbeit,3,Arbeitsabläufe,Automatisierung von Arbeit.png
 Sicherheitsbewusstsein,5,Arbeitsabläufe,Sicherheitsbewusstsein.png
-Grundkentnisse,1,Erklärung,
+Grundkenntnisse,1,Erklärung,
 Gutes theoretisches Wissen,2,Erklärung,
 Erfahrung in Praktik und Theorie,3,Erklärung,
-Gute praktische und theoretische Kentnisse,4,Erklärung,
-Sehr gute praktische und theoretische Kentnisse,5,Erklärung,
+Gute praktische und theoretische kenntnisse,4,Erklärung,
+Sehr gute praktische und theoretische kenntnisse,5,Erklärung,
