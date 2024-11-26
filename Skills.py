@@ -59,7 +59,7 @@ def get_color_for_value(value):
     elif value == "5":
         return HexColor("#2E8B57")  # Dunkelgrün
     else:
-        return HexColor("#FFFFFF")  # Standard: Weiß
+        return HexColor("#FFFFFF")  # Standard: Weiss
 
 
 def create_pdf(filename, data, icons_folder, user_name):
