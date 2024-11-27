@@ -8,7 +8,7 @@ Manuals verstehen,5,Hardware-Reparatur,Lesen von Schema und Service Manuals.png
 Level 1 Reparaturen,5,Hardware-Reparatur,Level 1 Reparaturen.png
 Level 2 Reparaturen ,5,Hardware-Reparatur,Level 2 Reparaturen.png
 Level 3 Reparaturen,4,Hardware-Reparatur,Level 3 Reparaturen.png
-Manjaro/Arch Linux,4,Softwaresysteme,Manjaro v Arch Linux.png
+Manjar/Arch Linux,4,Softwaresysteme,Manjaro v Arch Linux.png
 Debian/Ubuntu/Kali/Fedora Linux,3,Softwaresysteme,Debian v Ubuntu v Kali v Fedora.png
 Apple IOS,4,Softwaresysteme,Apple IOS.png
 Mac OS und Mac OS ARM,4,Softwaresysteme,Mac OS und Mac OS ARM.png
@@ -16,27 +16,25 @@ Apple iPad OS,4,Softwaresysteme,Apple iPad OS.png
 Android,4,Softwaresysteme,Android.png
 Manjaro ARM,4,Softwaresysteme,Manjaro ARM.png
 Windows ,3,Softwaresysteme,Windows.png
-C++,1,Programiersprachen,C++.png
-Python,3,Programiersprachen,Python.png
-Lua,3,Programiersprachen,Lua.png
-VBA,3,Programiersprachen,VBA.png
-SQL,1,Programiersprachen,SQL.png
-Javascript,1,Programiersprachen,Javascript.png
-BASH,1,Programiersprachen,BASH.png
-PHP,1,Programiersprachen,PHP.png
+C++,1,unused,C++.png
+SQL,1,unused,SQL.png
+Javascript,1,unused,Javascript.png
+BASH,1,unused,BASH.png
+PHP,1,unused,PHP.png
 Microsoft Office,4,Software-Kenntnisse,Microsoft Office.png
 Google Dienste,4,Software-Kenntnisse,Google Dienste.png
 Jira/Confluence,3,Software-Kenntnisse,Confluence und Jira.png
-Citrix,2,Software-Kenntnisse,Citrix.png
 Umgang mit KI,5,Software-Kenntnisse,Umgang mit KI.png
-GitHub,3,Software-Kenntnisse,GitHub.png
-Asana,3,Software-Kenntnisse,Asana.png
-Notion,3,Software-Kenntnisse,Notion.png
-NeoVim,3,Software-Kenntnisse,NeoVim.png
+GitHub,4,Software-Kenntnisse,GitHub.png
+Asana,2,Software-Kenntnisse,Asana.png
+NeoVim,4,Software-Kenntnisse,NeoVim.png
 Terminal,4,Software-Kenntnisse,Terminal.png
 SAP,3,Software-Kenntnisse,SAP.png
+VBA,3,Software-Kenntnisse,VBA.png
+SQL,1,unused,SQL.png
 Bildbearbeitung,4,Software-Kenntnisse,Gimp.png
-MS Teams,2,Software-Kenntnisse,MS Teams.png
+Python,3,Software-Kenntnisse,Python.png
+Lua,3,Software-Kenntnisse,Lua.png
 Laptop ,5,Hardware-Kenntnisse,Laptop.png
 Tablet,4,Hardware-Kenntnisse,Tablet.png
 Smartphone,5,Hardware-Kenntnisse,Smartphone.png
@@ -44,8 +42,8 @@ Desktop PC,5,Hardware-Kenntnisse,PC.png
 TV,5,Hardware-Kenntnisse,Display v TV.png
 Hi-Fi Audio,4,Hardware-Kenntnisse,Hi-Fi Audio.png
 Video,4,Hardware-Kenntnisse,Video.png
-Eventtechnik,2,Hardware-Kenntnisse,Eventtechnik.png
-Projektor ,2,Hardware-Kenntnisse,Projektor.png
+Eventtechnik,3,Hardware-Kenntnisse,Eventtechnik.png
+Projektor ,3,Hardware-Kenntnisse,Projektor.png
 iMac,5,Hardware-Kenntnisse,iMac.png
 iPod ,5,Hardware-Kenntnisse,iPod.png
 Kopfhörer,4,Hardware-Kenntnisse,Kopfhörer.png
@@ -70,3 +68,4 @@ Gutes theoretisches Wissen,2,Erklärung,
 Erfahrung in Praktik und Theorie,3,Erklärung,
 Gute praktische und theoretische kenntnisse,4,Erklärung,
 Sehr gute praktische und theoretische kenntnisse,5,Erklärung,
+Notion,3,unused,Notion.png

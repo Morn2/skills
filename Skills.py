@@ -46,20 +46,21 @@ def set_icon_parameters(height=13, width=13, y_offset=3):
 
 def get_color_for_value(value):
     """
-    Gibt die entsprechende Farbe für einen numerischen Wert zurück.
+    Gibt die entsprechende Farbe für einen numerischen Wert zurück, abgestimmt auf den Lebenslaufhintergrund.
+    Dunkel (1) → Hell (5), symbolisiert wachsendes Wissen.
     """
     if value == "1":
-        return HexColor("#ADD8E6")  # Hellblau
+        return HexColor("#3B6F6D")  # Dunkles Blaugrün
     elif value == "2":
-        return HexColor("#87CEEB")  # Mittelblau
+        return HexColor("#4C8D8A")  # Mittleres Blaugrün
     elif value == "3":
-        return HexColor("#4682B4")  # Dunkelblau
+        return HexColor("#6FAFAC")  # Sanftes Blaugrün
     elif value == "4":
-        return HexColor("#5F9EA0")  # Blaugrün
+        return HexColor("#93CBC7")  # Helles Türkis
     elif value == "5":
-        return HexColor("#2E8B57")  # Dunkelgrün
+        return HexColor("#B7DAD6")  # Sehr helles Türkis
     else:
-        return HexColor("#FFFFFF")  # Standard: Weiss
+        return HexColor("#E7F2F1")  # Sehr sanftes, fast weißes Grün (Standard)
 
 
 def create_pdf(filename, data, icons_folder, user_name):
