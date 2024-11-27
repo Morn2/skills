@@ -46,21 +46,20 @@ def set_icon_parameters(height=13, width=13, y_offset=3):
 
 def get_color_for_value(value):
     """
-    Gibt die entsprechende Farbe für einen numerischen Wert zurück, abgestimmt auf den Lebenslaufhintergrund.
-    Dunkel (1) → Hell (5), symbolisiert wachsendes Wissen.
+    Gibt die entsprechende Farbe jeden Wert.
     """
     if value == "1":
-        return HexColor("#3B6F6D")  # Dunkles Blaugrün
+        return HexColor("#c68fcf")  # Pastell Rosa
     elif value == "2":
-        return HexColor("#4C8D8A")  # Mittleres Blaugrün
+        return HexColor("#b56bff")  # Pastell Flieder
     elif value == "3":
-        return HexColor("#6FAFAC")  # Sanftes Blaugrün
+        return HexColor("#90CAF9")  # Pastell Hellblau
     elif value == "4":
-        return HexColor("#93CBC7")  # Helles Türkis
+        return HexColor("#4DD0E1")  # Pastell Türkis
     elif value == "5":
-        return HexColor("#B7DAD6")  # Sehr helles Türkis
+        return HexColor("#66BB6A")  # Frisches Hellgrün
     else:
-        return HexColor("#E7F2F1")  # Sehr sanftes, fast weißes Grün (Standard)
+        return HexColor("#FFFFFF")  # Standard Weiß (Fallback)
 
 
 def create_pdf(filename, data, icons_folder, user_name):
@@ -71,7 +70,7 @@ def create_pdf(filename, data, icons_folder, user_name):
     width, height = A4
     margin = 50
     bottom_margin = 100
-    column_width = (width - 2 * margin) / 2
+    column_width = (width - 2 * margin) / 1.9
 
     # Überschrift und Linie
     add_header(c, width, height, margin, user_name)
@@ -99,20 +98,16 @@ def add_header(c, width, height, margin, user_name):
            width - margin, height - margin - -10)
 
 
-def draw_categories(
-    c, data, icons_folder, height, margin, column_width
-):
+def draw_categories(c, data, icons_folder, height, margin, column_width):
     """
     Zeichnet die Kategorien, deren Namen und Icons in das PDF.
     """
     y_position_left = height - margin - 1
     y_position_right = height - margin - 1
 
-    # Kategorien links und rechts definieren
-    left_categories = ["Hardware-Kenntnisse",
-                       "Arbeitsabläufe", "Hardware-Reparatur"]
-    right_categories = ["Softwaresysteme",
-                        "Software-Kenntnisse"]
+    left_categories = ["Hardware-Kenntnisse", "Arbeitsabläufe",
+                       "Hardware-Reparatur"]
+    right_categories = ["Softwaresysteme", "Software-Kenntnisse"]
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
@@ -127,16 +122,36 @@ def draw_categories(
         else:
             continue
 
+        # Berechne die Breite des Textes
+        text_width = c.stringWidth(category, "Helvetica-Bold", 14)
+
+        # Kategorieüberschrift zeichnen (angepasste Breite)
+        c.setFillColor(HexColor("#FFFACD"))  # Farbe für alle Kategorien
+        c.rect(
+            x_position - 2,          # Leicht über die Kategorie hinaus
+            y_position - 10 - 2,     # Oberhalb der Kategorie
+            text_width + 4,          # Breite basierend auf Textbreite
+            15,                      # Höhe des Rechtecks
+            stroke=0,                # Kein Rand
+            fill=1                   # Füllen
+        )
+
         # Kategorieüberschrift
-        c.setFont("Helvetica-Bold", 15)
+        c.setFont("Helvetica-Bold", 14)
         c.setFillColor(HexColor("#000000"))
         c.drawString(x_position, y_position - 10, category)
         y_position -= 15
 
         # Einträge in der Kategorie
         for item in items:
-            draw_item(c, item, x_position, y_position,
-                      icons_folder, icon_params)
+            draw_item(
+                c,
+                item,
+                x_position,
+                y_position,
+                icons_folder,
+                icon_params
+            )
             y_position -= 20
 
         # Aktualisiere die Y-Positionen für die Spalten
@@ -168,7 +183,7 @@ def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
     if icon_path and os.path.isfile(icon_path):
         try:
             for i in range(num_icons):
-                icon_x_position = x_position + 15 + \
+                icon_x_position = x_position + 20 + \
                     text_width + i * (icon_params["width"] + 9)
                 c.setFillColor(color)
                 c.rect(
@@ -197,6 +212,19 @@ def add_explanation(c, data, margin, column_width, bottom_margin):
     """
     explanation_x = margin + column_width
     explanation_y = bottom_margin + 200
+
+    # Gelber Hintergrund für gesamte Erklärung
+    num_items = len(data.get("Erklärung", []))
+    explanation_box_height = 15 + num_items * 20  # Basis-Höhe + Einträge
+    c.setFillColor(HexColor("#FFFACD"))  # Helles Gelb
+    c.rect(
+        explanation_x - 5,           # Links ausdehnen
+        explanation_y - (num_items * 20) - -10,  # Bis zum letzten Eintrag
+        235,                        # Breite des Rechtecks
+        explanation_box_height - -15,     # Höhe dynamisch anpassen
+        stroke=0,
+        fill=1
+    )
 
     c.setFont("Helvetica-Bold", 15)
     c.setFillColor(HexColor("#000000"))
