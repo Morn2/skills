@@ -168,20 +168,20 @@ def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
         try:
             for i in range(num_icons):
                 icon_x_position = x_position + 15 + \
-                    text_width + i * (icon_params["width"] + 5)
+                    text_width + i * (icon_params["width"] + 9)
                 c.setFillColor(color)
                 c.rect(
-                    icon_x_position - 5,
-                    y_position - 17,
+                    icon_x_position - 2,
+                    y_position - 15,
                     icon_params["width"] + 10,
-                    icon_params["height"] + 5,
+                    icon_params["height"] + 3,
                     stroke=0,
                     fill=1,
                 )
                 c.drawImage(
                     icon_path,
                     icon_x_position,
-                    y_position - 15,
+                    y_position - 13,
                     width=icon_params["width"] + 5,
                     height=icon_params["height"],
                     mask="auto",
