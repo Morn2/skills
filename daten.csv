@@ -1,28 +1,28 @@
-Name,Wert,Kategorie,Icon
-Löten,4,Hardware-Reparatur,Löten.png
-SMD Löten,3,Hardware-Reparatur,SMD Löten.png
-Feines Handwerk,4,Hardware-Reparatur,Feines Handwerk.png
-Exakt,5,Hardware-Reparatur,Exakt.png
-Kabelbau,4,Hardware-Reparatur,Kabelbau.png
-Manuals verstehen,5,Hardware-Reparatur,Lesen von Schema und Service Manuals.png
-Level 1 Reparaturen,5,Hardware-Reparatur,Level 1 Reparaturen.png
-Level 2 Reparaturen ,5,Hardware-Reparatur,Level 2 Reparaturen.png
-Level 3 Reparaturen,4,Hardware-Reparatur,Level 3 Reparaturen.png
-Manjaro/Arch Linux,4,Softwaresysteme,Manjaro v Arch Linux.png
-Ubuntu/Kali Linux,3,Softwaresysteme,Debian v Ubuntu v Kali v Fedora.png
-Apple IOS,4,Softwaresysteme,Apple IOS.png
-Mac OS und Mac OS ARM,4,Softwaresysteme,Mac OS und Mac OS ARM.png
-Apple iPad OS,4,Softwaresysteme,Apple iPad OS.png
-Android,4,Softwaresysteme,Android.png
-Manjaro ARM,4,Softwaresysteme,Manjaro ARM.png
-Windows ,3,Softwaresysteme,Windows.png
-C++,1,unused,C++.png
-SQL,1,unused,SQL.png
-Javascript,1,unused,Javascript.png
-BASH,1,unused,BASH.png
-PHP,1,unused,PHP.png
-Microsoft Office,4,Software-Kenntnisse,Microsoft Office.png
-Google Dienste,4,Software-Kenntnisse,Google Dienste.png
+Name,Wert,Kategorie,Icon,Icon2
+Löten,4,Hardware-Reparatur,Löten.png,
+SMD Löten,3,Hardware-Reparatur,SMD Löten.png,
+Feines Handwerk,4,Hardware-Reparatur,Feines Handwerk.png,
+Exakt,5,Hardware-Reparatur,Exakt.png,
+Kabelbau,4,Hardware-Reparatur,Kabelbau.png,
+Manuals verstehen,5,Hardware-Reparatur,Lesen von Schema und Service Manuals.png,
+Level 1 Reparaturen,5,Hardware-Reparatur,Level 1 Reparaturen.png,
+Level 2 Reparaturen ,5,Hardware-Reparatur,Level 2 Reparaturen.png,
+Level 3 Reparaturen,4,Hardware-Reparatur,Level 3 Reparaturen.png,
+Manjaro/Arch Linux,4,Softwaresysteme,Manjaro v Arch Linux.png,
+Android und IOS,4,Softwaresysteme,Android,Apple IOS.png,
+Apple IOS,4,Softwaresysteme,Apple IOS.png,
+Mac OS und Mac OS ARM,4,Softwaresysteme,Mac OS und Mac OS ARM.png,
+Apple iPad OS,4,Softwaresysteme,Apple iPad OS.png,
+Android,4,Softwaresysteme,Android.png,
+Manjaro ARM,4,Softwaresysteme,Manjaro ARM.png,
+Windows ,3,Softwaresysteme,Windows.png,
+C++,1,unused,C++.png,
+SQL,1,unused,SQL.png,
+Javascript,1,unused,Javascript.png,
+BASH,1,unused,BASH.png,
+PHP,1,unused,PHP.png,
+Microsoft Office,4,Software-Kenntnisse,Microsoft Office.png,
+Google Dienste,4,Software-Kenntnisse,Google Dienste.png,
 Jira/Confluence,3,Software-Kenntnisse,Confluence und Jira.png
 Umgang mit KI,5,Software-Kenntnisse,Umgang mit KI.png
 GitHub,4,Software-Kenntnisse,GitHub.png
@@ -63,9 +63,13 @@ Fehlerbehebung,4,Arbeitsabläufe,Fehlerbehebung.png
 Refurbishment,5,Arbeitsabläufe,Refurbishment.png
 Automatisierung von Arbeit,3,Arbeitsabläufe,Automatisierung von Arbeit.png
 Sicherheit,5,Arbeitsabläufe,Sicherheitsbewusstsein.png
-Grundkenntnisse,1,Erklärung,
-Gutes theoretisches Wissen,2,Erklärung,
-Erfahrung in Praktik und Theorie,3,Erklärung,
-Gute praktische und theoretische kenntnisse,4,Erklärung,
-Sehr gute praktische und theoretische kenntnisse,5,Erklärung,
-Notion,3,unused,Notion.png
+Grundkenntnisse,1,Erklärung
+Gutes theoretisches Wissen,2,Erklärung
+Erfahrung in Praktik und Theorie,3,Erklärung
+Gute praktische und theoretische kenntnisse,4,Erklärung
+Sehr gute praktische und theoretische kenntnisse,5,Erklärung
+ITIL-Frameworks, 3, Arbeitsabläufe,ITIL.png
+BPMN-Grundlagen, SAFe, 3, Arbeitsabläufe,BPMN.png
+Softwareentwicklung, 3, Arbeitsabläufe,Softwareentwicklung.png
+Monitoring und Reporting, 4, Arbeitsabläufe,Monitoring und Reporting.png
+Notion,3,Software-Kentnisse,Notion.png
