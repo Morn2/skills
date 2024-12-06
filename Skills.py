@@ -194,19 +194,23 @@ def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
     num_icons = int(
         item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
 
-    # Namen zeichnen
+    # Namen zeichnen (links in der Spalte)
     c.setFillColor(HexColor("#000000"))
     c.setFont("Helvetica", 12)
     c.drawString(x_position + 5, y_position - 10, name)
 
-    text_width = c.stringWidth(name, "Helvetica", 12)
+    # Berechne die Position für die Symbole (rechts in der Spalte)
+    if x_position < c._pagesize[0] / 2:  # Linke Spalte
+        symbol_x_start = c._pagesize[0] / 2 - 20
+    else:  # Rechte Spalte
+        symbol_x_start = c._pagesize[0] - 50
 
-    # Icons zeichnen
+    # Icons zeichnen (rechtsbündig)
     if icon_path and os.path.isfile(icon_path):
         try:
             for i in range(num_icons):
-                icon_x_position = x_position + 20 + \
-                    text_width + i * (icon_params["width"] + 9)
+                icon_x_position = symbol_x_start - \
+                    i * (icon_params["width"] + 9)
                 c.setFillColor(color)
                 c.rect(
                     icon_x_position - 2,
@@ -220,7 +224,7 @@ def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
                     icon_path,
                     icon_x_position,
                     y_position - 13,
-                    width=icon_params["width"] + 5,
+                    width=icon_params["width"],
                     height=icon_params["height"],
                     mask="auto",
                 )
