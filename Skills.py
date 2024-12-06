@@ -160,7 +160,7 @@ def draw_categories(
 
     # Füge die vertikale Linie in der Mitte hinzu
     center_x = width / 2
-    c.setLineWidth(1)
+    c.setLineWidth(2)
     c.setStrokeColor(HexColor("#000000"))  # Schwarz
     c.line(center_x, height - margin, center_x, min(min_y_left, min_y_right))
 
@@ -225,7 +225,7 @@ def add_explanation(c, data, margin, column_width, bottom_margin, width):
     # Gelber Bereich bis zum Symbolrand
     symbol_x_end = width - margin - set_icon_parameters()["width"] - 5
     rect_width = symbol_x_end - explanation_x + \
-        set_icon_parameters()["width"] + 10
+        set_icon_parameters()["width"] + 15
 
     # Gelber Hintergrund für gesamte Erklärung
     num_items = len(data.get("Erklärung", []))
@@ -262,7 +262,7 @@ def add_explanation(c, data, margin, column_width, bottom_margin, width):
         explanation_y -= 20
 
 
-def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
+def add_logo_and_description(c, icons_folder, width, margin, bottom_margin, column_width):
     """
     Fügt das Python-Logo, den QR-Code und die Beschreibung zum PDF hinzu.
     """
@@ -271,70 +271,56 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     qr_code_path = os.path.join(icons_folder, "qr_code.png")
 
     # Dimensionen des Logos
-    logo_width = 100
-    logo_height = 100
-    qr_width = 100
-    qr_height = 100
+    logo_width = 125
+    logo_height = 125
+    qr_width = 125
+    qr_height = 125
 
-    # Startpositionen für das Logo und den QR-Code
-    logo_y = bottom_margin + 10  # Abstand zum unteren Rand
-    qr_y = logo_y  # Gleiche Höhe wie das Logo
+    # Positionen
+    logo_y = bottom_margin - 20
+    qr_y = logo_y
+    logo_x = width / 2 + 4  # Rechts der Mittellinie
+    qr_x = width - margin - qr_width + 18  # Rechtsbündig
 
-    # Logo, QR-Code und Text bis zur vollen Breite
-    logo_x = margin + 20  # Start ganz links + 20px Abstand
-    qr_x = width - margin - qr_width - 20  # QR-Code ganz rechts
-    text_width = width - 2 * margin  # Breite über gesamte Seite
-
-    # Python-Logo hinzufügen
+    # Logo hinzufügen
     if os.path.isfile(logo_path):
-        try:
-            c.drawImage(
-                logo_path,
-                logo_x,
-                logo_y,
-                width=logo_width,
-                height=logo_height,
-                mask="auto",
-            )
-        except Exception as e:
-            print(f"Fehler beim Laden des Python-Logos: {e}")
+        c.drawImage(
+            logo_path, logo_x, logo_y,
+            width=logo_width, height=logo_height, mask="auto"
+        )
 
     # QR-Code hinzufügen
     if os.path.isfile(qr_code_path):
-        try:
-            c.drawImage(
-                qr_code_path,
-                qr_x,
-                qr_y,
-                width=qr_width,
-                height=qr_height,
-                mask="auto",
-            )
-        except Exception as e:
-            print(f"Fehler beim Laden des QR-Codes: {e}")
+        c.drawImage(
+            qr_code_path, qr_x, qr_y,
+            width=qr_width, height=qr_height, mask="auto"
+        )
 
-    # Beschreibungstext hinzufügen
+    # Beschreibungstext
     text = (
-        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript "
-        "erstellt. Scannen Sie den QR-Code, um direkt zu "
-        "meinem GitHub-Repository unter "
-        "www.github.com/Morn2/Skills zu gelangen. "
-        "Skills.py ist die Datei des Sourcecodes. "
+        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.\n"
+        "Scannen Sie den QR-Code oder besuchen Sie:\n"
+        "www.github.com/Morn2/Skills\n\n"
+        "Skills.py ist die Datei des Sourcecodes."
     )
     styles = getSampleStyleSheet()
     style = styles["Normal"]
     style.fontName = "Helvetica"
-    style.fontSize = 12
+    style.fontSize = 10
     style.leading = 12  # Zeilenhöhe
     style.textColor = HexColor("#000000")
 
-    # Text unter Logo + QR-Code
-    text_x = logo_x  # Gleiche Startposition wie das Logo
-    text_y = logo_y - 80  # Unter dem Logo und QR-Code
+    # Berechnung der horizontalen Mitte zwischen Mittellinie und Rand
+    center_x = (width / 2 + width - margin) / 2
 
+    # Text-Position und Breite
+    text_x = center_x - 110  # Rechts der Mitte
+    text_width = column_width  # Textbreite begrenzt auf die Spaltenbreite
+    text_y = logo_y - 60  # Direkt unterhalb des Logos
+
+    # Textfeld zeichnen
     paragraph = Paragraph(text, style)
-    # Breite und maximale Höhe des Textblocks
-    paragraph.wrapOn(c, text_width, 50)
+    paragraph.wrapOn(c, text_width, 50)  # Begrenzung des Textblocks
     paragraph.drawOn(c, text_x, text_y)
 
 
@@ -358,9 +344,12 @@ def create_pdf(filename, data, icons_folder, user_name):
     add_explanation(c, data, margin, column_width, bottom_margin, width)
 
     # Python-Logo und Beschreibung hinzufügen
-    add_logo_and_description(c, icons_folder, width, margin, bottom_margin)
+    add_logo_and_description(c, icons_folder, width,
+                             margin, bottom_margin, column_width)
 
+    # PDF speichern
     c.save()
+    print(f"PDF wurde erfolgreich erstellt: {filename}")
 
 
 # Pfade und Dateinamen
