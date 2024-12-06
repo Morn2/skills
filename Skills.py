@@ -76,7 +76,7 @@ def create_pdf(filename, data, icons_folder, user_name):
     add_header(c, width, height, margin, user_name)
 
     # Kategorien zeichnen
-    draw_categories(c, data, icons_folder, height, margin, column_width)
+    draw_categories(c, data, icons_folder, height, width, margin, column_width)
 
     # Erklärung hinzufügen
     add_explanation(c, data, margin, column_width, bottom_margin)
@@ -98,12 +98,21 @@ def add_header(c, width, height, margin, user_name):
            width - margin, height - margin - -10)
 
 
-def draw_categories(c, data, icons_folder, height, margin, column_width):
+def draw_categories(
+        c,
+        data,
+        icons_folder,
+        height,
+        width,
+        margin,
+        column_width
+):
     """
     Zeichnet die Kategorien, deren Namen und Icons in das PDF.
     """
     y_position_left = height - margin - 1
     y_position_right = height - margin - 1
+    min_y_left = y_position_left
 
     left_categories = ["Hardware-Kenntnisse", "Arbeitsabläufe",
                        "Hardware-Reparatur"]
@@ -159,6 +168,12 @@ def draw_categories(c, data, icons_folder, height, margin, column_width):
             y_position_left = y_position
         elif category in right_categories:
             y_position_right = y_position
+
+        # Füge die vertikale Linie in der Mitte hinzu
+        center_x = width / 2
+        c.setLineWidth(1)
+        c.setStrokeColor(HexColor("#000000"))  # Schwarz
+        c.line(center_x, height - margin, center_x, margin)
 
 
 def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
