@@ -134,15 +134,22 @@ def draw_categories(
         else:
             continue
 
-        # Berechne die Breite des Textes
+        # Berechne die Breite des Textes und das gelbe Feld
         text_width = c.stringWidth(category, "Helvetica-Bold", 14)
 
-        # Kategorieüberschrift zeichnen (angepasste Breite)
+        if category in left_categories:
+            rect_width = (width / 2) - x_position + 2  # Bis zur Mittellinie
+        else:
+            # Gelbes Feld bis exakt zum rechten Rand der Symbole
+            symbol_x_end = width - margin - icon_params["width"] - 5
+            rect_width = (symbol_x_end - x_position) + \
+                icon_params["width"] + 10  # Kleiner Offset
+
         c.setFillColor(HexColor("#FFFACD"))  # Farbe für alle Kategorien
         c.rect(
-            x_position - 2,          # Leicht über die Kategorie hinaus
-            y_position - 10 - 2,     # Oberhalb der Kategorie
-            text_width + 4,          # Breite basierend auf Textbreite
+            x_position - 2,          # Startpunkt des Rechtecks
+            y_position - 10 - 2,     # Y-Position (oberhalb der Kategorie)
+            rect_width,              # Dynamische Breite
             15,                      # Höhe des Rechtecks
             stroke=0,                # Kein Rand
             fill=1                   # Füllen
@@ -162,18 +169,18 @@ def draw_categories(
                 x_position,
                 y_position,
                 icons_folder,
-                icon_params
+                icon_params,
+                width,
+                margin
             )
             y_position -= 20
 
         # Aktualisiere die Y-Positionen für die Spalten
         if category in left_categories:
             y_position_left = y_position
-            # Aktualisiere linke Spalte
             min_y_left = min(min_y_left, y_position)
         elif category in right_categories:
             y_position_right = y_position
-            # Aktualisiere rechte Spalte
             min_y_right = min(min_y_right, y_position)
 
     # Füge die vertikale Linie in der Mitte hinzu
@@ -183,7 +190,7 @@ def draw_categories(
     c.line(center_x, height - margin, center_x, min(min_y_left, min_y_right))
 
 
-def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
+def draw_item(c, item, x_position, y_position, icons_folder, icon_params, width, margin):
     """
     Zeichnet einen einzelnen Eintrag mit Namen, Icons und Farben.
     """
@@ -203,7 +210,8 @@ def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
     if x_position < c._pagesize[0] / 2:  # Linke Spalte
         symbol_x_start = c._pagesize[0] / 2 - 20
     else:  # Rechte Spalte
-        symbol_x_start = c._pagesize[0] - 50
+        symbol_x_start = width - margin - \
+            icon_params["width"] - 5  # Exakt rechtsbündig
 
     # Icons zeichnen (rechtsbündig)
     if icon_path and os.path.isfile(icon_path):
