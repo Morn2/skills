@@ -62,31 +62,6 @@ def get_color_for_value(value):
         return HexColor("#FFFFFF")  # Standard Weiß (Fallback)
 
 
-def create_pdf(filename, data, icons_folder, user_name):
-    """
-    Erstellt ein PDF mit den Daten aus der CSV-Datei, Icons und Benutzername.
-    """
-    c = canvas.Canvas(filename, pagesize=A4)
-    width, height = A4
-    margin = 50
-    bottom_margin = 100
-    column_width = (width - 2 * margin) / 1.9
-
-    # Überschrift und Linie
-    add_header(c, width, height, margin, user_name)
-
-    # Kategorien zeichnen
-    draw_categories(c, data, icons_folder, height, width, margin, column_width)
-
-    # Erklärung hinzufügen
-    add_explanation(c, data, margin, column_width, bottom_margin)
-
-    # Python-Logo und Beschreibung hinzufügen
-    add_logo_and_description(c, icons_folder, width, margin, bottom_margin)
-
-    c.save()
-
-
 def add_header(c, width, height, margin, user_name):
     """
     Fügt die Überschrift und die Trennline ein.
@@ -240,12 +215,17 @@ def draw_item(c, item, x_position, y_position, icons_folder, icon_params, width,
             print(f"Fehler bei Icon '{icon_path}': {e}")
 
 
-def add_explanation(c, data, margin, column_width, bottom_margin):
+def add_explanation(c, data, margin, column_width, bottom_margin, width):
     """
     Fügt die Erklärung mit farbigen Blöcken zum PDF hinzu.
     """
     explanation_x = margin + column_width
     explanation_y = bottom_margin + 200
+
+    # Gelber Bereich bis zum Symbolrand
+    symbol_x_end = width - margin - set_icon_parameters()["width"] - 5
+    rect_width = symbol_x_end - explanation_x + \
+        set_icon_parameters()["width"] + 10
 
     # Gelber Hintergrund für gesamte Erklärung
     num_items = len(data.get("Erklärung", []))
@@ -254,7 +234,7 @@ def add_explanation(c, data, margin, column_width, bottom_margin):
     c.rect(
         explanation_x - 5,           # Links ausdehnen
         explanation_y - (num_items * 20) - -10,  # Bis zum letzten Eintrag
-        235,                        # Breite des Rechtecks
+        rect_width,                  # Dynamische Breite
         explanation_box_height - -15,     # Höhe dynamisch anpassen
         stroke=0,
         fill=1
@@ -275,7 +255,8 @@ def add_explanation(c, data, margin, column_width, bottom_margin):
         name = item["Name"]
         color = get_color_for_value(item["Value"])
         c.setFillColor(color)
-        c.rect(explanation_x, explanation_y, 225, 15, stroke=0, fill=1)
+        c.rect(explanation_x, explanation_y,
+               rect_width - 10, 15, stroke=0, fill=1)
         c.setFillColor(HexColor("#000000"))
         c.drawString(explanation_x + 5, explanation_y + 3, name)
         explanation_y -= 20
@@ -296,10 +277,13 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     qr_height = 100
 
     # Startpositionen für das Logo und den QR-Code
-    logo_x = width - margin - qr_width - logo_width - 20  # Platz QR rechts
     logo_y = bottom_margin + 10  # Abstand zum unteren Rand
-    qr_x = logo_x + logo_width + 10  # Rechts neben dem Logo
     qr_y = logo_y  # Gleiche Höhe wie das Logo
+
+    # Logo, QR-Code und Text bis zur vollen Breite
+    logo_x = margin + 20  # Start ganz links + 20px Abstand
+    qr_x = width - margin - qr_width - 20  # QR-Code ganz rechts
+    text_width = width - 2 * margin  # Breite über gesamte Seite
 
     # Python-Logo hinzufügen
     if os.path.isfile(logo_path):
@@ -347,12 +331,36 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin):
     # Text unter Logo + QR-Code
     text_x = logo_x  # Gleiche Startposition wie das Logo
     text_y = logo_y - 80  # Unter dem Logo und QR-Code
-    text_width = logo_width + qr_width + 10  # Breite von Logo + QR-Code
 
     paragraph = Paragraph(text, style)
     # Breite und maximale Höhe des Textblocks
     paragraph.wrapOn(c, text_width, 50)
     paragraph.drawOn(c, text_x, text_y)
+
+
+def create_pdf(filename, data, icons_folder, user_name):
+    """
+    Erstellt ein PDF mit den Daten aus der CSV-Datei, Icons und Benutzername.
+    """
+    c = canvas.Canvas(filename, pagesize=A4)
+    width, height = A4
+    margin = 50
+    bottom_margin = 100
+    column_width = (width - 2 * margin) / 1.9
+
+    # Überschrift und Linie
+    add_header(c, width, height, margin, user_name)
+
+    # Kategorien zeichnen
+    draw_categories(c, data, icons_folder, height, width, margin, column_width)
+
+    # Erklärung hinzufügen
+    add_explanation(c, data, margin, column_width, bottom_margin, width)
+
+    # Python-Logo und Beschreibung hinzufügen
+    add_logo_and_description(c, icons_folder, width, margin, bottom_margin)
+
+    c.save()
 
 
 # Pfade und Dateinamen
