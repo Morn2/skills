@@ -112,7 +112,10 @@ def draw_categories(
     """
     y_position_left = height - margin - 1
     y_position_right = height - margin - 1
-    min_y_left = y_position_left
+
+    # Variablen für die niedrigste Y-Position initialisieren
+    min_y_left = height - margin - 1
+    min_y_right = height - margin - 1
 
     left_categories = ["Hardware-Kenntnisse", "Arbeitsabläufe",
                        "Hardware-Reparatur"]
@@ -166,14 +169,18 @@ def draw_categories(
         # Aktualisiere die Y-Positionen für die Spalten
         if category in left_categories:
             y_position_left = y_position
+            # Aktualisiere linke Spalte
+            min_y_left = min(min_y_left, y_position)
         elif category in right_categories:
             y_position_right = y_position
+            # Aktualisiere rechte Spalte
+            min_y_right = min(min_y_right, y_position)
 
-        # Füge die vertikale Linie in der Mitte hinzu
-        center_x = width / 2
-        c.setLineWidth(1)
-        c.setStrokeColor(HexColor("#000000"))  # Schwarz
-        c.line(center_x, height - margin, center_x, margin)
+    # Füge die vertikale Linie in der Mitte hinzu
+    center_x = width / 2
+    c.setLineWidth(1)
+    c.setStrokeColor(HexColor("#000000"))  # Schwarz
+    c.line(center_x, height - margin, center_x, min(min_y_left, min_y_right))
 
 
 def draw_item(c, item, x_position, y_position, icons_folder, icon_params):
