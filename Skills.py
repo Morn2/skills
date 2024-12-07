@@ -70,6 +70,7 @@ def add_header(c, width, height, margin, user_name):
     c.setFont("Helvetica-Bold", 16)
     c.drawString(margin, height - margin - -15,
                  f"{user_name} Skill-Übersicht")
+    c.setLineWidth(2)
     c.line(margin, height - margin - -10,
            width - margin, height - margin - -10)
 
@@ -299,8 +300,10 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin, colu
 
     # Beschreibungstext
     text = (
-        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.<br/>"
-        "Scannen Sie den QR-Code oder besuchen Sie: "
+        "Dieses Dokument wurde von einem von<br/>"
+        "mir geschriebenen Python-Skript erstellt.<br/>"
+        "Scannen Sie den QR-Code oder <br/>"
+        "besuchen Sie:"
         '<a href="https://www.github.com/Morn2/Skills" color="blue">www.github.com/Morn2/Skills</a><br/>'
         "Skills.py ist die Datei des Sourcecodes."
     )
