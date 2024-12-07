@@ -3,8 +3,9 @@ import csv
 from reportlab.lib.colors import HexColor
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from reportlab.platypus import Paragraph
+from reportlab.platypus import Paragraph, Frame
 from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import enums
 
 
 def get_user_name():
@@ -298,30 +299,24 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin, colu
 
     # Beschreibungstext
     text = (
-        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.\n"
-        "Scannen Sie den QR-Code oder besuchen Sie:\n"
-        "www.github.com/Morn2/Skills\n\n"
+        "Dieses Dokument wurde von einem von mir geschriebenen Python-Skript erstellt.<br/>"
+        "Scannen Sie den QR-Code oder besuchen Sie: "
+        '<a href="https://www.github.com/Morn2/Skills" color="blue">www.github.com/Morn2/Skills</a><br/>'
         "Skills.py ist die Datei des Sourcecodes."
     )
     styles = getSampleStyleSheet()
     style = styles["Normal"]
     style.fontName = "Helvetica"
-    style.fontSize = 10
+    style.fontSize = 12
     style.leading = 12  # Zeilenhöhe
     style.textColor = HexColor("#000000")
+    style.alignment = enums.TA_JUSTIFY  # Blocksatz
 
-    # Berechnung der horizontalen Mitte zwischen Mittellinie und Rand
-    center_x = (width / 2 + width - margin) / 2
-
-    # Text-Position und Breite
-    text_x = center_x - 110  # Rechts der Mitte
-    text_width = column_width  # Textbreite begrenzt auf die Spaltenbreite
-    text_y = logo_y - 60  # Direkt unterhalb des Logos
-
-    # Textfeld zeichnen
+    center_x = (width / 2 + width - margin) / 2  # Horizontale Mitte berechnen
+    frame = Frame(center_x - 115, logo_y - 80,
+                  column_width, 90, showBoundary=0)
     paragraph = Paragraph(text, style)
-    paragraph.wrapOn(c, text_width, 50)  # Begrenzung des Textblocks
-    paragraph.drawOn(c, text_x, text_y)
+    frame.addFromList([paragraph], c)
 
 
 def create_pdf(filename, data, icons_folder, user_name):
