@@ -76,13 +76,8 @@ def add_header(c, width, height, margin, user_name):
 
 
 def draw_categories(
-        c,
-        data,
-        icons_folder,
-        height,
-        width,
-        margin,
-        column_width
+        c, data, icons_folder, height,
+        width, margin, column_width
 ):
     """
     Zeichnet die Kategorien, deren Namen und Icons in das PDF.
@@ -110,9 +105,6 @@ def draw_categories(
             x_position = margin + column_width
         else:
             continue
-
-        # Berechne die Breite des Textes und das gelbe Feld
-        text_width = c.stringWidth(category, "Helvetica-Bold", 14)
 
         if category in left_categories:
             rect_width = (width / 2) - x_position + 2  # Bis zur Mittellinie
@@ -167,7 +159,10 @@ def draw_categories(
     c.line(center_x, height - margin, center_x, min(min_y_left, min_y_right))
 
 
-def draw_item(c, item, x_position, y_position, icons_folder, icon_params, width, margin):
+def draw_item(
+    c, item, x_position, y_position,
+    icons_folder, icon_params, width, margin
+):
     """
     Zeichnet einen einzelnen Eintrag mit Namen, Icons und Farben.
     """
@@ -264,7 +259,10 @@ def add_explanation(c, data, margin, column_width, bottom_margin, width):
         explanation_y -= 20
 
 
-def add_logo_and_description(c, icons_folder, width, margin, bottom_margin, column_width):
+def add_logo_and_description(
+        c, icons_folder, width,
+        margin, bottom_margin, column_width
+):
     """
     Fügt das Python-Logo, den QR-Code und die Beschreibung zum PDF hinzu.
     """
@@ -297,16 +295,17 @@ def add_logo_and_description(c, icons_folder, width, margin, bottom_margin, colu
             qr_code_path, qr_x, qr_y,
             width=qr_width, height=qr_height, mask="auto"
         )
-
     # Beschreibungstext
     text = (
         "Dieses Dokument wurde von einem von<br/>"
         "mir geschriebenen Python-Skript erstellt.<br/>"
         "Scannen Sie den QR-Code oder <br/>"
-        "besuchen Sie:"
-        '<a href="https://www.github.com/Morn2/Skills" color="blue">www.github.com/Morn2/Skills</a><br/>'
+        "besuchen Sie: "
+        '<a href="https://www.github.com/Morn2/Skills" '
+        'color="blue">www.github.com/Morn2/Skills</a><br/>'
         "Skills.py ist die Datei des Sourcecodes."
     )
+
     styles = getSampleStyleSheet()
     style = styles["Normal"]
     style.fontName = "Helvetica"
