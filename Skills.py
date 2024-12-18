@@ -109,7 +109,26 @@ def draw_categories(
         else:
             continue
 
-        # Kategorieüberschrift
+        # Gelben Hintergrund für Kategorie zeichnen
+        if category in left_categories:
+            # Breite bis zur Mittellinie
+            rect_width = (width / 2) - x_position + 2
+        else:
+            # Breite des gelben Hintergrunds auf der rechten Seite
+            symbol_x_end = width - margin - icon_params["width"] - -28
+            rect_width = (symbol_x_end - x_position)
+
+        c.setFillColor(HexColor("#FFFACD"))  # Helles Gelb
+        c.rect(
+            x_position - 1,     # Leicht nach links verschieben
+            y_position - 10 - 2,  # Etwas höher als der Text
+            rect_width - 10,          # Berechnete Breite
+            15,                   # Höhe des Rechtecks
+            stroke=0,
+            fill=1
+        )
+
+        # Kategorieüberschrift zeichnen
         c.setFont("Helvetica-Bold", 14)
         c.setFillColor(HexColor("#000000"))
         c.drawString(x_position, y_position - 10, category)
@@ -130,7 +149,7 @@ def draw_categories(
 
             # Berechne die Position für die Symbole
             if x_position < width / 2:  # Linke Spalte
-                symbol_x_start = width / 2 - 20
+                symbol_x_start = width / 2 - 36
             else:  # Rechte Spalte
                 symbol_x_start = width - margin - icon_params["width"] - 5
 
@@ -143,15 +162,15 @@ def draw_categories(
                         c.setFillColor(color)  # Farbe anwenden
                         c.rect(
                             icon_x_position - 2,  # Linker Rand des Rechtecks
-                            y_position - 15,  # Y-Position des Rechtecks
+                            y_position - 17,  # Y-Position des Rechtecks
                             icon_params["width"] + 10,  # Breite des Rechtecks
-                            icon_params["height"] + 3,  # Höhe des Rechtecks
+                            icon_params["height"] + 4,  # Höhe des Rechtecks
                             stroke=0,
                             fill=1
                         )
                         c.drawImage(
                             icon_path,
-                            icon_x_position,
+                            icon_x_position - -2,
                             y_position - 15,
                             width=icon_params["width"],
                             height=icon_params["height"],
