@@ -80,12 +80,12 @@ def draw_categories(
         width, margin, column_width
 ):
     """
-    Zeichnet die Kategorien, deren Namen und Icons in das PDF.
+    Zeichnet die Kategorien, deren Namen und Icons
+    in das PDF und zentriert die vertikale Linie.
     """
     y_position_left = height - margin - 1
     y_position_right = height - margin - 1
 
-    # Variablen für die niedrigste Y-Position initialisieren
     min_y_left = height - margin - 1
     min_y_right = height - margin - 1
 
@@ -96,7 +96,6 @@ def draw_categories(
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
 
     for category, items in data.items():
-        # Bestimme Position basierend auf der Kategorie
         if category in left_categories:
             y_position = y_position_left
             x_position = margin
@@ -106,23 +105,10 @@ def draw_categories(
         else:
             continue
 
-        if category in left_categories:
-            rect_width = (width / 2) - x_position + 2  # Bis zur Mittellinie
-        else:
-            # Gelbes Feld bis exakt zum rechten Rand der Symbole
-            symbol_x_end = width - margin - icon_params["width"] - 5
-            rect_width = (symbol_x_end - x_position) + \
-                icon_params["width"] + 10  # Kleiner Offset
-
-        c.setFillColor(HexColor("#FFFACD"))  # Farbe für alle Kategorien
-        c.rect(
-            x_position - 2,          # Startpunkt des Rechtecks
-            y_position - 10 - 2,     # Y-Position (oberhalb der Kategorie)
-            rect_width,              # Dynamische Breite
-            15,                      # Höhe des Rechtecks
-            stroke=0,                # Kein Rand
-            fill=1                   # Füllen
-        )
+        # Zentrierte Position für Symbole und Text berechnen
+        center_x = width / 2
+        text_offset = 5
+        symbol_x_start = center_x - icon_params['width'] - 10
 
         # Kategorieüberschrift
         c.setFont("Helvetica-Bold", 14)
@@ -132,16 +118,32 @@ def draw_categories(
 
         # Einträge in der Kategorie
         for item in items:
-            draw_item(
-                c,
-                item,
-                x_position,
-                y_position,
-                icons_folder,
-                icon_params,
-                width,
-                margin
-            )
+            name = item["Name"]
+            icon_path = os.path.join(icons_folder, item["Icon"]) or None
+            color = get_color_for_value(item["Value"])
+
+            # Namen zeichnen
+            c.setFillColor(HexColor("#000000"))
+            c.setFont("Helvetica", 12)
+            c.drawString(x_position + text_offset, y_position - 10, name)
+
+            # Symbole zeichnen
+            if icon_path and os.path.isfile(icon_path):
+                try:
+                    c.setFillColor(color)
+                    c.rect(
+                        symbol_x_start, y_position - 15,
+                        icon_params["width"], icon_params["height"],
+                        stroke=0, fill=1
+                    )
+                    c.drawImage(
+                        icon_path, symbol_x_start, y_position - 13,
+                        width=icon_params["width"],
+                        height=icon_params["height"], mask="auto"
+                    )
+                except Exception as e:
+                    print(f"Fehler bei Icon '{icon_path}': {e}")
+
             y_position -= 20
 
         # Aktualisiere die Y-Positionen für die Spalten
@@ -153,9 +155,8 @@ def draw_categories(
             min_y_right = min(min_y_right, y_position)
 
     # Füge die vertikale Linie in der Mitte hinzu
-    center_x = width / 2
     c.setLineWidth(2)
-    c.setStrokeColor(HexColor("#000000"))  # Schwarz
+    c.setStrokeColor(HexColor("#000000"))
     c.line(center_x, height - margin, center_x, min(min_y_left, min_y_right))
 
 
