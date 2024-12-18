@@ -17,7 +17,8 @@ def get_user_name():
 
 def read_data_from_csv(file_path):
     """
-    Liest die Daten aus einer CSV-Datei und gibt sie als Dictionary zurück.
+    Liest die Daten aus einer CSV-Datei, sortiert sie
+    nach Wert und gibt sie als Dictionary zurück.
     """
     data = {}
     with open(file_path, newline='', encoding='utf-8') as csvfile:
@@ -32,8 +33,12 @@ def read_data_from_csv(file_path):
             data[category].append({
                 "Name": row['Name'],
                 "Icon": icon,
-                "Value": value
+                "Value": int(value) if value and value.isdigit() else 0
             })
+
+    # Sortiere die Einträge jeder Kategorie nach Wert (absteigend)
+    for category in data:
+        data[category].sort(key=lambda x: x['Value'], reverse=True)
 
     return data
 
@@ -49,15 +54,15 @@ def get_color_for_value(value):
     """
     Gibt die entsprechende Farbe jeden Wert.
     """
-    if value == "1":
+    if value == 1:
         return HexColor("#c68fcf")  # Pastell Rosa
-    elif value == "2":
+    elif value == 2:
         return HexColor("#b56bff")  # Pastell Flieder
-    elif value == "3":
+    elif value == 3:
         return HexColor("#90CAF9")  # Pastell Hellblau
-    elif value == "4":
+    elif value == 4:
         return HexColor("#4DD0E1")  # Pastell Türkis
-    elif value == "5":
+    elif value == 5:
         return HexColor("#66BB6A")  # Frisches Hellgrün
     else:
         return HexColor("#FFFFFF")  # Standard Weiß (Fallback)
@@ -80,8 +85,7 @@ def draw_categories(
         width, margin, column_width
 ):
     """
-    Zeichnet die Kategorien, deren Namen und Icons
-    in das PDF und zentriert die vertikale Linie.
+    Zeichnet die Kategorien, deren Namen und Icons in das PDF.
     """
     y_position_left = height - margin - 1
     y_position_right = height - margin - 1
@@ -89,8 +93,8 @@ def draw_categories(
     min_y_left = height - margin - 1
     min_y_right = height - margin - 1
 
-    left_categories = ["Hardware-Kenntnisse", "Arbeitsabläufe",
-                       "Hardware-Reparatur"]
+    left_categories = ["Hardware-Kenntnisse",
+                       "Arbeitsabläufe", "Hardware-Reparatur"]
     right_categories = ["Softwaresysteme", "Software-Kenntnisse"]
 
     icon_params = set_icon_parameters(height=13, width=13, y_offset=3)
@@ -105,11 +109,6 @@ def draw_categories(
         else:
             continue
 
-        # Zentrierte Position für Symbole und Text berechnen
-        center_x = width / 2
-        text_offset = 5
-        symbol_x_start = center_x - icon_params['width'] - 10
-
         # Kategorieüberschrift
         c.setFont("Helvetica-Bold", 14)
         c.setFillColor(HexColor("#000000"))
@@ -119,31 +118,48 @@ def draw_categories(
         # Einträge in der Kategorie
         for item in items:
             name = item["Name"]
-            icon_path = os.path.join(icons_folder, item["Icon"]) or None
+            icon_path = os.path.join(
+                icons_folder, item["Icon"]) if item["Icon"] else None
             color = get_color_for_value(item["Value"])
+            num_icons = item["Value"]
 
             # Namen zeichnen
             c.setFillColor(HexColor("#000000"))
             c.setFont("Helvetica", 12)
-            c.drawString(x_position + text_offset, y_position - 10, name)
+            c.drawString(x_position + 5, y_position - 10, name)
+
+            # Berechne die Position für die Symbole
+            if x_position < width / 2:  # Linke Spalte
+                symbol_x_start = width / 2 - 20
+            else:  # Rechte Spalte
+                symbol_x_start = width - margin - icon_params["width"] - 5
 
             # Symbole zeichnen
             if icon_path and os.path.isfile(icon_path):
                 try:
-                    c.setFillColor(color)
-                    c.rect(
-                        symbol_x_start, y_position - 15,
-                        icon_params["width"], icon_params["height"],
-                        stroke=0, fill=1
-                    )
-                    c.drawImage(
-                        icon_path, symbol_x_start, y_position - 13,
-                        width=icon_params["width"],
-                        height=icon_params["height"], mask="auto"
-                    )
+                    for i in range(num_icons):
+                        icon_x_position = symbol_x_start - \
+                            i * (icon_params["width"] + 9)
+                        c.setFillColor(color)  # Farbe anwenden
+                        c.rect(
+                            icon_x_position - 2,  # Linker Rand des Rechtecks
+                            y_position - 15,  # Y-Position des Rechtecks
+                            icon_params["width"] + 10,  # Breite des Rechtecks
+                            icon_params["height"] + 3,  # Höhe des Rechtecks
+                            stroke=0,
+                            fill=1
+                        )
+                        c.drawImage(
+                            icon_path,
+                            icon_x_position,
+                            y_position - 15,
+                            width=icon_params["width"],
+                            height=icon_params["height"],
+                            mask="auto"
+                        )
                 except Exception as e:
                     print(f"Fehler bei Icon '{icon_path}': {e}")
-
+            # Reduzierung der y_position nach dem Zeichnen eines Eintrags
             y_position -= 20
 
         # Aktualisiere die Y-Positionen für die Spalten
@@ -155,62 +171,10 @@ def draw_categories(
             min_y_right = min(min_y_right, y_position)
 
     # Füge die vertikale Linie in der Mitte hinzu
+    center_x = width / 2
     c.setLineWidth(2)
     c.setStrokeColor(HexColor("#000000"))
     c.line(center_x, height - margin, center_x, min(min_y_left, min_y_right))
-
-
-def draw_item(
-    c, item, x_position, y_position,
-    icons_folder, icon_params, width, margin
-):
-    """
-    Zeichnet einen einzelnen Eintrag mit Namen, Icons und Farben.
-    """
-    name = item["Name"]
-    icon_path = os.path.join(
-        icons_folder, item["Icon"]) if item["Icon"] else None
-    color = get_color_for_value(item["Value"])
-    num_icons = int(
-        item["Value"]) if item["Value"] and item["Value"].isdigit() else 1
-
-    # Namen zeichnen (links in der Spalte)
-    c.setFillColor(HexColor("#000000"))
-    c.setFont("Helvetica", 12)
-    c.drawString(x_position + 5, y_position - 10, name)
-
-    # Berechne die Position für die Symbole (rechts in der Spalte)
-    if x_position < c._pagesize[0] / 2:  # Linke Spalte
-        symbol_x_start = c._pagesize[0] / 2 - 20
-    else:  # Rechte Spalte
-        symbol_x_start = width - margin - \
-            icon_params["width"] - 5  # Exakt rechtsbündig
-
-    # Icons zeichnen (rechtsbündig)
-    if icon_path and os.path.isfile(icon_path):
-        try:
-            for i in range(num_icons):
-                icon_x_position = symbol_x_start - \
-                    i * (icon_params["width"] + 9)
-                c.setFillColor(color)
-                c.rect(
-                    icon_x_position - 2,
-                    y_position - 15,
-                    icon_params["width"] + 10,
-                    icon_params["height"] + 3,
-                    stroke=0,
-                    fill=1,
-                )
-                c.drawImage(
-                    icon_path,
-                    icon_x_position,
-                    y_position - 13,
-                    width=icon_params["width"],
-                    height=icon_params["height"],
-                    mask="auto",
-                )
-        except Exception as e:
-            print(f"Fehler bei Icon '{icon_path}': {e}")
 
 
 def add_explanation(c, data, margin, column_width, bottom_margin, width):
